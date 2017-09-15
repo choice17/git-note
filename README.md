@@ -2,20 +2,21 @@
 
 - initialize a git repo
 
-git init
+  git init
 
 - add all the file to the .git
 
-git add *
+  git add *
 
 - commit to create log for .git
 
-git commit -m "first commit"
-//git commit -m "<msg>"
+  git commit -m "first commit"
+
+  //git commit -m "<msg>"
 
 - add remote origin on web github/ gitlab
 
-git remote add origin https://github.com/<username>/<project-name>.git
+  git remote add origin https://github.com/<username>/<project-name>.git
 
 - push the changes / commit on remote 
 
@@ -23,11 +24,11 @@ git push -u origin master
 
 - checkout to the branch
 
-git checkout <branchname> -- <filename>
+git checkout "<branchname>" -- "<filename>"
   
 -- checkout to new branch
 
-git checkout -b <new branch> <src branch>
+git checkout -b \<new branch> <src branch>
 
 - fetch (safely copy the new file from branch)
 
