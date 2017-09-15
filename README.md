@@ -1,9 +1,9 @@
 # git-note
 
-- initialize a git repo\n
-git init
+- initialize a git repo
+-- git init
 
-- add all the file to the .git\n
+- add all the file to the .git
 git add *
 
 - commit to create log for .git\n
