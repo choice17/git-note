@@ -20,6 +20,8 @@
 
 - push the changes / commit on remote 
 
+  ** for first push -> please use > git push --set-upstream origin master
+
   git push -u origin master
 
 - checkout to the branch
