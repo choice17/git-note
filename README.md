@@ -36,22 +36,36 @@ git fetch <branch>
 - check the git history
 
 git log <--stat> <commit-id>
+
 git status <commit-id>
+
 git diff <commit-id> <commit-id>
+
 git diff <branch name>
 
 - merge master branch ex.
 
 git checkout master
+
 git pull
+
 git checkout <test>
-git pull
-git rebase -i master
-git checkout master
-git merge <test>
   
-X avoid operatio: never use rebase on public branch 
+git pull
+
+git rebase -i master
 
 git checkout master
+
+git merge <test>
+  
+ :x: avoid operatio: never use rebase on public branch 
+
+git checkout master
+
 git rebase -i test
+
+- extra.
+
+[emoji symbol for .md](https://gist.githubusercontent.com/AliMD/3344523/raw/6cb0a435ad52bcd7465ab786f18e511ce5089924/gistfile1.md)
 
