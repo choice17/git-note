@@ -1,16 +1,16 @@
 # git-note
 
-- initialize a git repo
+- initialize a git repo\n
 git init
 
-- add all the file to the .git
+- add all the file to the .git\n
 git add *
 
-- commit to create log for .git
-git commit -m "first commit" 
+- commit to create log for .git\n
+git commit -m "first commit" \n
 //git commit -m <"msg">
 
-- add remote origin on web github/ gitlab
+- add remote origin on web github/ gitlab\n
 git remote add origin https://github.com/<username>/<project-name>.git
 
 - push the changes / commit on remote 
