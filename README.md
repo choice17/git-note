@@ -11,7 +11,7 @@ git add *
 - commit to create log for .git
 
 git commit -m "first commit"
-//git commit -m "<"msg">"
+//git commit -m "<msg>"
 
 - add remote origin on web github/ gitlab
 
