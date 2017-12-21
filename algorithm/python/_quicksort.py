@@ -3,7 +3,7 @@ import sys
 #import __funture__
 sys.setrecursionlimit(1000)
 
-def quicksort(array_in):
+def _quicksort(array_in):
 
 	if len(array_in) <2:
 		return array_in
