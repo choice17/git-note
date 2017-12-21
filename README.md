@@ -1,5 +1,14 @@
 # git-note
 
+- check git current username 
+
+  git config --list | grep -a 
+  
+- setup git user
+
+  git config --global user.name "Alvin J. Alexander"
+  git config --global user.emal addr@emal.com
+
 - initialize a git repo
 
   git init
