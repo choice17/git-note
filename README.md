@@ -1,9 +1,9 @@
 # git-note
 
 * check git current username 
-```
+```bash
   git config --list | grep -a 
-
+```
   
 * setup git user 
 ```bash
@@ -24,12 +24,12 @@
 * commit to create log for .git
 ```bash
   git commit -m "first commit"
-```  
-  `//git commit -m \<"msg">`
+``` 
+  `//git commit -m <"msg">`
 
 * add remote origin on web github/ gitlab
 ```bash
-  git remote add origin https://github.com/\<username>/\<project-name>.git
+  git remote add origin https://github.com/<username>/<project-name>.git
 ```
 
 * push the changes / commit on remote 
@@ -41,28 +41,28 @@
 
 * checkout to the branch 
 ```bash
-  git checkout \<branchname> -* \<filename>
+  git checkout <branchname> -* <filename>
 ```
   
 * checkout to new branch 
 ```bash
-  git checkout -b \<new branch> \<src branch>
+  git checkout -b <new branch> <src branch>
 ```
 
 * fetch (safely copy the new file from branch)
 ```bash
-  git fetch \<branch>
+  git fetch <branch>
 ```
 
 * check the git history 
 ```bash
-  git log <--stat> \<commit-id>
+  git log <--stat> <commit-id>
 
-  git status \<commit-id>
+  git status <commit-id>
 
-  git diff \<commit-id> \<commit-id>
+  git diff <commit-id> <commit-id>
 
-  git diff \<branch name>
+  git diff <branch name>
 ```
 
 * merge master branch ex. 
@@ -71,7 +71,7 @@
 
   git pull
 
-  git checkout \<test>
+  git checkout <test>
 
   git pull
 
@@ -79,7 +79,7 @@
 
   git checkout master
 
-  git merge \<test>
+  git merge <test>
 ```
  
  :x: avoid operatio: never use rebase on public branch 
