@@ -92,4 +92,38 @@
 * extra.
 
   [emoji symbol for .md](https://gist.githubusercontent.com/AliMD/3344523/raw/6cb0a435ad52bcd7465ab786f18e511ce5089924/gistfile1.md)
+  
+* create a branch (feature-1) and merge to (develop)  
+```
+  git checkout develop
+  git branch
+```
+you are now in develop branch
+
+`develop features`
+suppose that you have some features file  
+```
+  git checkout -b feature-1
+  git add feature_file
+  git commit  
+```
+should now in (feature-1) branch
+`catch up with develop branch before finishing the feature`
+```
+  git fetch origin develop
+  gitk --all
+  git merge origin/develop
+```
+`merge to develop branch and delete feature branch`
+```
+  git checkout develop
+  git merge --squash feature-1
+  git commit
+  git push
+  git branch -d feature-1
+```
+
+
+ 
+
 
