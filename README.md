@@ -123,6 +123,10 @@ should now in (feature-1) branch
   git branch -d feature-1
 ```
 
+* to check all branches info
+```bash
+  gitk --all
+```
 
  
 
