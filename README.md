@@ -5,7 +5,7 @@
 ## Content table  
 - **[Program language basic](#basic)**  
 - **[Algorithm](#algorithm)**  
-- **[Inheritance](#inheritance)**  
+- **[Data_Structure](#data_structure)**  
 
 ## basic  
 - **[c++](./language/C++.md)**  
@@ -24,3 +24,11 @@
 [[py]](./algorithm/python/_blob_detect.py)
 - **binaryTreeReversal**
 [[c++]](./algorithm/c++/binaryTreeReversal.cpp)
+
+## Data Structure
+- **c/c++**  
+[[Class]](./data_structure/C_C++/typedef.md)  
+[[Abstract]](./data_structure/C_C++/abstract.md)  
+[[function]](./data_structure/C_C++/void_const.md)  
+- **java**  
+[[Abstract]](./data_structure/java/abstract_interface.md)
