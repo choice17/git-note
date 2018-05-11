@@ -13,7 +13,7 @@
 
 ## algorithm  
 - **bubblesort**
-[[image]](./algorithm/python/blob.jpg)
+[[image]](./files/imagelist.md#blob)
 [[py]](./algorithm/python/_bubblesort.py)
 - **mergesort**
 [[py]](./algorithm/python/_mergesort.py)
