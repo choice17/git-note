@@ -10,7 +10,7 @@
 ## basic  
 - **[c++](./language/C++.md)**  
 - **[git](./language/Git-note.md)**  
-- **[md](./langugae/markdown.md)**
+- **[md](./language/markdown.md)**
 
 ## algorithm  
 - **bubblesort**
