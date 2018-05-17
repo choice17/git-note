@@ -10,6 +10,7 @@
 ## basic  
 - **[c++](./language/C++.md)**  
 - **[git](./language/Git-note.md)**  
+- **[md](./langugae/markdown.md)**
 
 ## algorithm  
 - **bubblesort**
@@ -32,3 +33,5 @@
 [[function]](./data_structure/C_C++/void_const.md)  
 - **java**  
 [[Abstract]](./data_structure/java/abstract_interface.md)
+- **python**  
+[[Super]](./data_structure/python/super.py)  
