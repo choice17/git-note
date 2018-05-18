@@ -48,6 +48,7 @@
   git push -u origin master
 ```
 
+
 ## branches management  
 
 * checkout to the branch 
@@ -153,6 +154,13 @@
 * to check all branches info
 ```bash
   gitk --all
+```
+* to fetch certain file in the branch
+```
+git fetch
+git checkout -m <revision> <yourfilepath>
+git add <yourfilepath>
+git commit
 ```
 
 ## reference  
