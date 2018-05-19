@@ -34,4 +34,4 @@
 - **java**  
 [[Abstract]](./data_structure/java/abstract_interface.md)
 - **python**  
-[[Class]](./data_structure/python/class.py)  
+[[Class]](./data_structure/python/class.md)  
