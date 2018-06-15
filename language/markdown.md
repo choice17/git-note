@@ -4,7 +4,8 @@
 -- [header](#header)  
 -- [link](#link)  
 -- [collapse](#collapse)  
--- [font](#font)**  
+-- [font](#font)  
+-- [latex](#latex)**  
 
 ## header  
 ```python
@@ -82,3 +83,7 @@ Some Markdown text with <span style="color:red">some *blue* text</span>.
 Some Markdown text with <span style="color:blue">some *blue* text</span>.  
 Some Markdown text with <span style="color:green">some *blue* text</span>.  
 Some Markdown text with <span style="color:red">some *blue* text</span>.  
+
+## latex
+
+see [http](http://csrgxtu.github.io/2015/03/20/Writing-Mathematic-Fomulars-in-Markdown/)
