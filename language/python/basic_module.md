@@ -7,6 +7,9 @@
 * **[sys](#sys)**
 * **[time&datetime](#time&datetime)**
 * **[binascii](#binascii)**
+* **[re](#re)**
+* **[socket](#socket)**  
+* **[urllib](#urllib)**
 
 ### subprocess
 able to communicate to cmd.exe  
@@ -94,3 +97,102 @@ b = 'saf342r32'
 h = bi.hexify(bytes(b),'utf-8')
 uh = bi.unhexify(h)
 ```
+
+### re  
+(regular expression)  
+with wild card  
+- re.findall  
+> [0-9]+  
+> ^F.+   
+> ^F.+?  
+> \S+@\S+
+> ()  
+> [^ ] 
+- re.find  
+
+
+```python
+import re
+x = 'My 2 favorite numbers are 19 and 42'
+y = re.findall('[0-9]+',x)
+print(y)
+```
+`['2','19','42']`
+
+```python
+x = 'From: Using the : character'
+y = re.findall('^F.+:',x)
+print(y)
+````
+`['From: Using the :']`
+`^F` first match character  
+`.+:` greedy as big as possible, one or more char, last character match  
+
+```python
+y = re.findall('^F.+?:',x)
+print(y)
+```
+`['From:']` 
+`F.+?` first match, one or more, not greedy, last match 
+
+```python
+x = 'from stephen.hi@uct.ac.za sat jan 5 000:00:00 2008'
+y = re.findall('\S+@\S+',x)
+print(y)
+```
+`['stephen.hi@uct.ac.za']`   
+`\S+@\S+`  at least one-non-whitespace char, `@` char match, `+` greedy  
+
+
+```python
+y = re.findall('^From (\S+@\S+)',x))
+```
+`['stephen.hi@uct.ac.za']`  
+`()` highlight the return parition  
+
+```python 
+x = 'from stephen.hi@uct.ac.za sat jan 5 000:00:00 2008'
+w = x.split()[1].split('@')[1]
+<-->
+w = re.findall('@([^ ]*)',x)
+<-->
+w = re.findall('^From .*@([^ ]*)',x)
+print(w)
+```
+`['uct.ac.za']`  
+`@([^ ]*)`  `[^ ]` <- match non-blank char, * match many of them  
+
+```python
+x = 'we have $10.00 dollars for cookies'  
+y = re.findall('\$[0-9.]+',x)
+print(y)
+```
+`['$10.00']`
+
+### socket  
+- TCP  
+```python
+import socket as s
+
+y = s.socket(s.AF_INET, s.SOCK_STREAM)
+y.connect(('data.pr4e.org',80))
+cmd = 'GET http://data.pr4e.org/romeo.txt HTTPS/1.0\r\n\r\n'.encode()
+y.send(cmd)
+
+while True:
+	d = y.recv(512)
+	if len(d)<1:
+		break
+	print(d.decode())
+y.close()
+```
+
+### urllib
+```python
+import urllib.request, urllib.parse, urllib.error
+
+fhand = urllib.request('http://data.pr4e.org/romeo.txt')
+for line in fhand:
+	print(line.decode().strip())
+```
+
