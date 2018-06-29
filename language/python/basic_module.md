@@ -16,6 +16,7 @@
 * **[jsonparser](#jsonparser)**  
 * **[argparser](#argparser)**  
 * **[configparser](#configparser)**  
+* **[pyinstaller](#pyinstaller)**  
 
 ### subprocess
 able to communicate to cmd.exe  
@@ -455,6 +456,29 @@ config['DEFAULT']['fun1']
 config['SETUP']['fun1']
 >> handsome
 ```
+
+## pyinstaller  
+pyinstaller help to create window application .exe file from .py  
+one line installation script:  
+`pip install pyinstaller`
+one line execute py to exe  
+`pyinstaller <-F> app.py `
+
+** more options  
+1. create spec file  
+```python
+pyi-makespec -F app.py
+```
+2. edit the spec file or checkout <path-to-pyinstaller\hook\> to know the availability of library access   
+```python   
+1. import sys  
+2. sys.setrecursionlimit(10000) # <== to avoid overhead the limit  
+3. binaries=['opencv_ffmpeg.dll'] # <== may need if ur using opencv-python 
+4. excludes=['PyQt4','PyQt5'] # <== may induce error, but its fine for simple application
+```
+3. to compress the exe file, to take away abundant library manully in dist file (if not using -F option)  
+4. go to <path-to-pyinstaller-lib\hook\hook-numpy.core.py>, comment the mkl-section to avoid install mkl into your exe, it may affect performace though.  
+
 
 
 
