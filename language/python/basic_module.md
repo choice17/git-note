@@ -431,7 +431,24 @@ def change_action(parser,dest_in, help_in):
 		if dest_in == action.dest_in:
 			action.help_in = help_in
 ```
-	
+allow repeating the parser for different application -> def userspace  
+```python
+import argparser
+class UserNamespace(object):
+    pass
+user_namespace = UserNamespace()
+app_parser = argparser.ArgumentParser(add_help=False)
+app_parser.add_argument('-app','--app',help='')
+app_parser.add_argument('-h','--help',action='store_true',help='')
+args,_ = app_parser.parse_known_args(namespace=user_namespace)
+if args.args.help:
+	print('help')
+service_parser = argparser.ArgumentParser()
+service_parser.add_argument('-s','--service',help='service command')
+args,_ = app_parser.parse_known_args(namespace=user_namespace)
+```
+
+
 
 ## configparser  
 configparser allows parsing config.ini file  
