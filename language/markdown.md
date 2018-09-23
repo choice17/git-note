@@ -5,7 +5,8 @@
 -- [link](#link)  
 -- [collapse](#collapse)  
 -- [font](#font)  
--- [latex](#latex)**  
+-- [latex](#latex)  
+-- [table](#table)**
 
 ## header  
 ```python
@@ -87,3 +88,12 @@ Some Markdown text with <span style="color:red">some *blue* text</span>.
 ## latex
 
 see [http](http://csrgxtu.github.io/2015/03/20/Writing-Mathematic-Fomulars-in-Markdown/)
+
+## table  
+
+| Tables   |      Are      |  Cool |
+|----------|:-------------:|------:|
+| col 1 is |  left-aligned | $1600 |
+| col 2 is |    centered   |   $12 |
+| col 3 is | right-aligned |    $1 |
+    
