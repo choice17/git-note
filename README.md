@@ -38,7 +38,7 @@
 - **python**  
 [[Class]](./data_structure/python/class.md)  
 
-## Librart 
+## Library 
 - **[opencv](./library/opencv.md)**  
 - **[pillow](./library/pillow.md)**  
 - **[ffmpeg](./library/ffmpeg.md)**  
