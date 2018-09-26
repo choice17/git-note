@@ -6,6 +6,7 @@
 * **[ffplay](#ffplay)**  
 * **[libav](#libav)**  
 * **[sdl](#sdl)**  
+* **[compile](#compile)**  
 
 ## ffmpeg  
 
@@ -135,3 +136,33 @@ sdl2.dll
 
 
 **rendercopy**  
+
+## compile 
+
+linker for ffmpeg lib [ref](https://fritzone.wordpress.com/2010/05/11/link-with-static-ffmpeg/)
+
+1. Configure your ffmpeg to generate static libraries:
+
+```
+./configure –enable-static –enable-gpl –enable-libfaac –enable-libfaad –enable-libx264 –enable-nonfree
+make && make install
+(in the ffmpeg directory)
+```
+
+2. Now, link your application:
+
+```
+gcc -Wall -g live_mystuff.c -o my_app \
+/usr/local/src/ffmpeg/libswscale/libswscale.a \
+/usr/local/src/ffmpeg/libavdevice/libavdevice.a \
+/usr/local/src/ffmpeg/libavformat/libavformat.a \
+/usr/local/src/ffmpeg/libavcodec/libavcodec.a \
+/usr/local/src/ffmpeg/libavutil/libavutil.a \
+-lpthread -lbz2 -lm -lz -lfaac -lmp3lame -lx264 -lfaad
+```
+And DO NOT change the order of the libraries above, otherwise you’ll get lots of link errors like:
+
+```
+/usr/local/src/ffmpeg/libavformat/libavformat.a(allformats.o): In function `av_register_all’:
+/usr/local/src/ffmpeg/libavformat/allformats.c:47: undefined reference to `avcodec_register_all’
+```
