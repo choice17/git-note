@@ -166,3 +166,12 @@ And DO NOT change the order of the libraries above, otherwise you’ll get lots 
 /usr/local/src/ffmpeg/libavformat/libavformat.a(allformats.o): In function `av_register_all’:
 /usr/local/src/ffmpeg/libavformat/allformats.c:47: undefined reference to `avcodec_register_all’
 ```
+
+3. sample player prog
+
+[REFERENCE simplest ffplay](./simplest_ffplay_makefile)
+```
+player/
+      |-src/ffplay.cc
+      |-Makefile
+```

@@ -1,0 +1,73 @@
+#################################################################
+# REF https://github.com/leixiaohua1020/simplest_ffmpeg_player  #
+#################################################################
+FFMPEG = 1
+######################
+
+CC := gcc
+CXX := g++ -std=c++11
+CFLAGS := -Wall
+LDFLAGS := -lm -lpthread -lstdc++ -lz
+
+
+PKG_LIBS := sdl2 gtk+-2.0
+
+ifeq ($(FFMPEG), 1)
+FFMPEG_LIBS = \
+libavdevice libavformat libavfilter \
+libavcodec libswresample libswscale libavutil
+PKG_LIBS += $(FFMPEG_LIBS)
+endif
+
+CFLAGS += `pkg-config --cflags $(PKG_LIBS)`
+LDFLAGS += `pkg-config --libs $(PKG_LIBS)`
+
+BIN = ffplay
+IDIR := inc
+SDIR := src
+ODIR := obj
+BDIR := bin
+
+TARGET := $(BDIR)/$(BIN)
+
+INCLUDES := \
+-I. \
+-I$(IDIR)
+
+
+SRCS := \
+$(wildcard src/*.c) \
+$(wildcard src/*.cc)
+OBJS = $(addprefix $(ODIR)/,\
+$(patsubst %.c,%.o,\
+$(patsubst %.cc,%.o,$(SRCS))))
+
+
+$(ODIR)/%.o: %.c
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+$(ODIR)/%.o: %.cc
+	@mkdir -p $(dir $@)
+	$(CXX) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+
+all: $(TARGET)
+
+$(TARGET): $(OBJS)
+	@mkdir -p $(dir $@)
+	$(CXX) $(CFLAGS) $(INCLUDES) \
+	-o $@ $^ $(LDFLAGS) 
+
+.PHONY: call
+call:
+	@echo 1. cflags: $(CFLAGS)
+	@echo 2. path: $(IDIR) $(SDIR) $(ODIR) $(BDIR)
+	@echo 3. src:objs $(SRCS) $(OBJS)
+	@echo 4. include: $(INCLUDES)
+	@echo 5. ldlib: $(LDFLAGS)
+	@echo 6. tar: $(TARGET)
+
+.PHONY: clean
+clean:
+	rm -rf $(ODIR) $(BDIR)
