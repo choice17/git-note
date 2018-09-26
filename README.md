@@ -44,6 +44,9 @@
 - **[ffmpeg](./library/ffmpeg.md)**  
 - **[tensorflow](./library/tensorflow.md)**  
 
+## Linux 
+- **[pkg-config](./linux/pkg-config.md)**  
+
 ## script  
 myscript-python
 - [[wget]](./script/wget.py)
