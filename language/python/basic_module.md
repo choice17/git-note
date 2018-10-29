@@ -17,6 +17,7 @@
 * **[argparser](#argparser)**  
 * **[configparser](#configparser)**  
 * **[pyinstaller](#pyinstaller)**  
+* **[cpython](#cpython)**
 
 ### subprocess
 able to communicate to cmd.exe  
@@ -496,7 +497,9 @@ pyi-makespec -F app.py
 3. to compress the exe file, to take away abundant library manully in dist file (if not using -F option)  
 4. go to <path-to-pyinstaller-lib\hook\hook-numpy.core.py>, comment the mkl-section to avoid install mkl into your exe, it may affect performace though.  
 
+## cpython  
 
+[link to cpython](./cpython/readme.md)
 
 
 
