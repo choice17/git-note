@@ -19,3 +19,10 @@ cpp/
    |    |-main.cc
    |-Makefile
 ```  
+
+## Note: C  
+
+## file-ptr  
+
+- [write and read binary from struct](./c/fwrite_read.c)  
+- [extern variable into global access](./c/fwrite_read.c)  
