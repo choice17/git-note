@@ -4,10 +4,13 @@
 - **[git initalize config](#inital-config)**
 - **[branches management](#branches-management)**
 - **[merge branch](#merge-branch)**
+- **[cherry pick](#cherry-pick)**  
 - **[tagging](#tagging)**  
 - **[conflict](#conflict)**  
 - **[useful command](#useful-command)**
 - **[reference](#reference)**
+- **[gitconfig](#gitconfig)**  
+- **[gitmessage](#gitmessage)**  
 
 ## inital config  
 * check git current username 
@@ -17,8 +20,8 @@
   
 * setup git user 
 ```bash
-  git config --global user.name "Alvin J. Alexander"
-  git config --global user.emal addr@emal.com
+  git config --global user.name "Takchoi yu"
+  git config --global user.emal takchoi@email.com
 ```
 
 * initialize a git repo
@@ -48,7 +51,6 @@
 ```bash
   git push -u origin master
 ```
-
 
 ## branches management  
 
@@ -143,6 +145,19 @@
   (local) git push -u origin master -> (master)
 ```
 
+## cherry-pick  
+
+Suppose you are at the `feature-1` branch
+A old branch `feature-old` have a crucial feature commit id `e123old` unused and you want to include to your branch 
+
+```
+  (master)    git checkout feature-1
+  (feature-1) git cherry-pick  e123old
+```
+
+Done! it is easy but you have to fix if there is any conflict!
+
+
 ## tagging  
 
 tagging is to mapping the commit ID to self-defined tag name  
@@ -220,11 +235,26 @@ One tip is to use powerful tool `vim diff <file1> <fil2>`
 ```  
 
 * git diff
-```
+```python
   git diff <branch1> <branch2>
   git diff <branch1> -- <filepath1> <branch2> -- <filepath2> 
-  git diff @ @^ # @: current HEAD, @^: one previous commit
+  
+  # @: current HEAD, @^: one previous commit
+  git diff @ @^ 
+
+  # get name 
+  git diff <branch1> <branch2> --name-only
+
+  # get status only (with + and - cnt) 
+  git diff <branch1> <branch2> -stat
+
 ```
+
+* get remote  
+```
+  # get remote url
+  git remote get-url {origin} --all
+```  
 
 ## reference  
 
@@ -232,4 +262,47 @@ One tip is to use powerful tool `vim diff <file1> <fil2>`
   [emoji symbol for .md](https://gist.githubusercontent.com/AliMD/3344523/raw/6cb0a435ad52bcd7465ab786f18e511ce5089924/gistfile1.md)
  
 
+## gitconfig  
 
+gitconfig allow alias for git command and default control of user  
+```python
+# ~/.gitconfig
+[filter "lfs"]
+u smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+  clean = git-lfs clean -- %f
+[user]
+  name = Takchoi.Yu im147
+  email = takchoi.y@augentix.com
+[commit]
+    template = ~/.gitmessage
+[core]
+    autocrlf = true # change to "input" if in linux
+[push]
+    default = simple
+[alias]
+    st = status
+    ci = commit
+    co = checkout
+    br = branch
+    lg = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all -n 100
+    df = difftool -y
+    mg = mergetool -y
+```
+
+## gitmessage  
+
+this is linked from gitconfig `[commit]` tag
+
+```python
+#
+#
+# Subject line >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#
+# Explain What and Why >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#
+# Append issue tracking information
+#
+#
+``` 
