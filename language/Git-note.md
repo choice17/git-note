@@ -4,9 +4,10 @@
 - **[git initalize config](#inital-config)**
 - **[branches management](#branches-management)**
 - **[merge branch](#merge-branch)**
+- **[tagging](#tagging)**  
+- **[conflict](#conflict)**  
 - **[useful command](#useful-command)**
 - **[reference](#reference)**
-
 
 ## inital config  
 * check git current username 
@@ -142,7 +143,51 @@
   (local) git push -u origin master -> (master)
 ```
 
+## tagging  
 
+tagging is to mapping the commit ID to self-defined tag name  
+[ref](https://stackoverflow.com/questions/5195859/how-do-you-push-a-tag-to-a-remote-repository-using-git/26438076#26438076)
+
+* add tag to local  
+  `at local (master)`  
+```bash
+  (master) git tag v1.0.0
+  (master) git tag 
+          v1.0.0
+```  
+
+* remove tag  
+```bash
+  (master) git tag --delete <tagname>  
+```  
+
+* push to remote  
+  `at local (master)`  
+```bash
+  (master) git push origin <tagname>
+```  
+
+* remove remote tag  
+
+```bash
+  git push --delete origin <tagname>
+```
+
+## conflict  
+
+There may be certain conflict during merging, one method is decide the conflict part.
+With conflict branch `(merge|conflict)`, the files show conflict text
+You have to select one by removing the extra text.
+```
+|<<<<<<<<<<<<<< commit @ sdf29dkossd 
++ print('hello world')
+
+|>>>>>>>>>>>>>> commit @ 10ds99ddfcc
+- print('hellow world')
++ print('I am good, thankyou')
+```
+
+One tip is to use powerful tool `vim diff <file1> <fil2>`  
 
 ## useful command  
 
@@ -155,12 +200,30 @@
 ```bash
   gitk --all
 ```
+
 * to fetch certain file in the branch
 ```
-git fetch
-git checkout -m <revision> <yourfilepath>
-git add <yourfilepath>
-git commit
+  git fetch
+  git checkout -m <revision> <yourfilepath>
+  git add <yourfilepath>
+  git commit
+```
+
+* to checkout certain file in some branch  
+```
+  git checkout <branch> -- <filepath>  
+```  
+
+* open graph tree  
+```
+  gitk --all
+```  
+
+* git diff
+```
+  git diff <branch1> <branch2>
+  git diff <branch1> -- <filepath1> <branch2> -- <filepath2> 
+  git diff @ @^ # @: current HEAD, @^: one previous commit
 ```
 
 ## reference  
