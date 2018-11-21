@@ -1,0 +1,108 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
+Plugin 'tpope/vim-fugitive'
+" CHOI plugin 
+Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-surround'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'majutsushi/tagbar'
+Plugin 'vim-airline/vim-airline'
+Plugin 'valloric/youcompleteme'
+" ===================end of choi============================
+"plugin from http://vim-scripts.org/vim/scripts.html
+" Plugin 'L9'
+" Git plugin not hosted on GitHub
+Plugin 'git://git.wincent.com/command-t.git'
+" git repos on your local machine (i.e. when working on your own plugin)
+" The sparkup vim script is in a subdirectory of this repo called vim.
+" Pass the path to set the runtimepath properly.
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Install L9 and avoid a Naming conflict if you've already installed a
+" different version somewhere else.
+" Plugin 'ascenator/L9', {'name': 'newL9'}
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+" ========= Plugin Enable ==========
+
+" Nerdtree
+map <F3> :NERDTreeToggle<CR>
+" autocmd vimenter * NERDTree
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+" Airline 
+let g:airine#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+
+" TagBar
+" let g:tagbar_ctags_bin = 1
+nmap <F4> :TagbarToggle<CR>
+
+" Vim Config
+set encoding=utf-8
+set clipboard=unnamed
+set number 
+set mouse=a
+set tabstop=4
+set softtabstop=0 noexpandtab
+set shiftwidth=4
+set smarttab
+set list
+set listchars=tab:>=
+highlight SpecialKey ctermfg=153
+syntax enable
+set background=light
+
+" colorscheme solarized
+let g:solarized_termcolors=   16      
+let g:solarized_termtrans =   0       
+let g:solarized_degrade   =   0       
+let g:solarized_bold      =   1       
+let g:solarized_underline =   1       
+let g:solarized_italic    =   1       
+let g:solarized_contrast  =   "normal"
+let g:solarized_visibility=   "normal"
+
+" Key mapping
+map <S-q> :q!<CR>
+map <S-w> :wq<CR>
+map <S-Left> gt
+map <S-Right> gT
+map <S-t> :tabe<CR>
+map <S-V> :sp<CR>
+map <S-B> :vsp<CR>
+map <S-S> :shell<CR>
+noremap <c-]> 2<c-]>
+nnoremap <A-Up> <C-W><C-K>
+nnoremap <A-Down> <C-W><C-J>
+nnoremap <A-Left> <C-W><C-H>
+nnoremap <A-Right> <C-W><C-L>
+

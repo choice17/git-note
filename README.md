@@ -6,6 +6,10 @@
 - **[Program language basic](#basic)**  
 - **[Algorithm](#algorithm)**  
 - **[Data_Structure](#data_structure)**  
+- **[Library](#library)**  
+- **[Linux](#linux)**  
+- **[Script](#script)**  
+- **[Machine Learning](./machine_learning/machine_learning.md)**  
 
 ## basic  
 - **[c++](./language/C++.md)**  
@@ -28,7 +32,7 @@
 - **binaryTreeReversal**
 [[c++]](./algorithm/c++/binaryTreeReversal.cpp)
 
-## Data Structure
+## data_structure
 - **c/c++**  
 [[Class]](./data_structure/C_C++/typedef.md)  
 [[Abstract]](./data_structure/C_C++/abstract.md)  
@@ -38,13 +42,13 @@
 - **python**  
 [[Class]](./data_structure/python/class.md)  
 
-## Library 
+## library 
 - **[opencv](./library/opencv.md)**  
 - **[pillow](./library/pillow.md)**  
 - **[ffmpeg](./library/ffmpeg.md)**  
 - **[tensorflow](./library/tensorflow.md)**  
 
-## Linux 
+## linux 
 - **[pkg-config](./linux/pkg-config.md)**  
 
 ## script  
