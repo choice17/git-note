@@ -15,7 +15,7 @@
 ```python
 """run_keras_server.py"""
 # import the necessary packages
-from keras.applications import ResNet50
+from keras.applications import MobileNet as Model
 from keras.preprocessing.image import img_to_array
 from keras.applications import imagenet_utils
 from PIL import Image
@@ -35,7 +35,8 @@ def load_model():
     # pre-trained on ImageNet and provided by Keras, but you can
     # substitute in your own networks just as easily)
     global model
-    model = ResNet50(weights="imagenet")
+    model = Model(weights="imagenet")
+    
 ```
 
 * Input preprocessing.
@@ -49,8 +50,8 @@ def prepare_image(image, target):
     # resize the input image and preprocess it
     image = image.resize(target)
     image = img_to_array(image)
-    image = np.expand_dims(image, axis=0)
-    image = imagenet_utils.preprocess_input(image)
+    image = np.expand_dims(image, axis=0).astype(float)/255.
+    #image = imagenet_utils.preprocess_input(image)
 
     # return the processed image
     return image
@@ -94,14 +95,16 @@ def predict():
     return flask.jsonify(data)
 ```
 
-* Start up script
+* Start up script *NOTE* DO NOT USE this method for production setup
 
 ```python
 if __name__ == "__main__":
     print(("* Loading Keras model and Flask starting server..."
         "please wait until server has fully started"))
     load_model()
-    app.run()
+    IP = '0.0.0.0'
+    PORT = 5000
+    app.run(host=IP, port=PORT)
 ```
 
 
