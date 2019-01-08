@@ -17,7 +17,8 @@ def load_model():
     # substitute in your own networks just as easily)
     global model
     model = Model(weights="imagenet")
-
+    model._make_prediction_function() # https://github.com/keras-team/keras/issues/6462
+   
 def prepare_image(image, target):
     # if the image mode is not RGB, convert it
     if image.mode != "RGB":
