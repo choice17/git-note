@@ -1,5 +1,5 @@
-from keras.applications import MobileNet as Model
-from keras.preprocessing.image import img_to_array
+from tensorflow.keras.applications import MobileNet as Model
+from tensorflow.keras.preprocessing.image import img_to_array
 from keras.applications import imagenet_utils
 from PIL import Image
 import numpy as np
@@ -18,7 +18,7 @@ def load_model():
     global model
     model = Model(weights="imagenet")
     model._make_prediction_function() # https://github.com/keras-team/keras/issues/6462
-   
+
 def prepare_image(image, target):
     # if the image mode is not RGB, convert it
     if image.mode != "RGB":
@@ -79,3 +79,4 @@ if __name__ == "__main__":
     IP = '0.0.0.0'
     PORT = 5000
     app.run(host=IP, port=PORT)
+
