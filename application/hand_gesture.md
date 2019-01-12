@@ -18,3 +18,8 @@
 - [ ] Train Hand gesture Dataset with DL (mobilenet)?
 - [ ] Add DL module for Palm-Angle facing detection to hand gesture model
 
+## Reference  
+
+- [IMU data intro](http://www.starlino.com/imu_guide.html)
+- [MATLAB IOS IMU data transfer](https://www.mathworks.com/hardware-support/iphone-sensor.html)
+
