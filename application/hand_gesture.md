@@ -22,4 +22,5 @@
 
 - [IMU data intro](http://www.starlino.com/imu_guide.html)
 - [MATLAB IOS IMU data transfer](https://www.mathworks.com/hardware-support/iphone-sensor.html)
-
+- [Complementary Filter](http://web.archive.org/web/20091121085323/http://www.mikroquad.com/bin/view/Research/ComplementaryFilter)
+- [Stack overflow for IMU data](https://stackoverflow.com/questions/1586658/combine-gyroscope-and-accelerometer-data)
