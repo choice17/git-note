@@ -78,6 +78,13 @@ options
 **streaming from local device**  
 `ffmpeg -f dshow -i video="HP Truevision Full HD":audio="Microphone (Intel® Smart Sound Technology)"  -pix_fmt yuv420p -window_size qcif -f mpgets udp://127.0.0.1:8888`  
 
+**filter nal packet type**  
+`ffmpeg -i INPUT -c:v copy -bsf:v 'filter_units=pass_types=1-5' OUTPUT`
+`ffmpeg -i INPUT -c:v copy -bsf:v 'filter_units=remove_types=35|38-40' OUTPUT`
+
+**add nal sei_user_data**  
+`ffmpeg -i INPUT -c:v libx264 -bsf:v h264_metadata=sei_user_data=‘086f3693-b7b3-4f2c-9653-21492feee5b8+hello’ OUTPUT`
+
 ## ffprobe  
 
 `ffprobe -i {input} `  
