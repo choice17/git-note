@@ -84,7 +84,8 @@ options
 `ffmpeg -i TT.h264  -c:v copy -bsf:v 'filter_units=pass_types=6' -f rawvideo -`  
 
 **add nal sei_user_data**    
-`ffmpeg -i INPUT -c:v libx264 -bsf:v h264_metadata=sei_user_data=‘086f3693-b7b3-4f2c-9653-21492feee5b8+hello’ OUTPUT`  
+`ffmpeg -i INPUT.h264 -c:v libx264 -sn -an -bsf:v h264_metadata=sei_user_data='086f3693-
+b7b3-4f2c-9653-21492feee5b8+hello' OUTPUT.h264`  
 
 ## ffprobe  
 
