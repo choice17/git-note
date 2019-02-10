@@ -1,0 +1,4 @@
+dataset http://crcv.ucf.edu/data/UCF-iPhone.php
+
+recurrence plot
+https://www.kaggle.com/tigurius/recuplots-and-cnns-for-time-series-classification
