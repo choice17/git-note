@@ -48,6 +48,7 @@
 - **[pillow](./library/pillow.md)**  
 - **[ffmpeg](./library/ffmpeg.md)**  
 - **[tensorflow](./library/tensorflow.md)**  
+- **[darknet](./library/darknet.md)**  
 
 ## linux 
 - **[pkg-config](./linux/pkg-config.md)**  
