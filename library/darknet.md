@@ -6,6 +6,8 @@
 * **[Official Webpage](https://pjreddie.com/darknet/yolo/)**  
 * **[Pretrained Weight](#weights)**  
 * **[Sample Command](#commands)**  
+* **[Build Flow - Window](#buildflow)**  
+* **[Python API](#./darknet/darknet.py)**  
 
 ## python api  
 
@@ -28,6 +30,17 @@
 This make file is targeted to Window environment
 To get rid of make error, we can simply ignore example/go.o.  
 
+## buildflow  
+
+To build in master branch newest commit 61c9d02ec461e30d5 in windows.  
+You may need to do 3 steps.
+
+* Step0. Prerequisite mingw-64 in your window environ with Msys  
+* Step1. Add <time.h> in include/darknet.h  
+* Step2. Remove go.o in Makefile  
+* Step3. Comment out the run_go() function in examples/darknet.c  
+
+Then a simple make call in console should work it out.
 
 ## weights
 
