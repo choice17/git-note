@@ -497,6 +497,17 @@ pyi-makespec -F app.py
 3. to compress the exe file, to take away abundant library manully in dist file (if not using -F option)  
 4. go to <path-to-pyinstaller-lib\hook\hook-numpy.core.py>, comment the mkl-section to avoid install mkl into your exe, it may affect performace though.  
 
+**NOTE**  
+Per user case, we may want to provide template application code for user to define some simple function
+
+For example  
+[app.py](./pyinstaller/app.py)  
+[print_app.py](./pyinstaller/print_app.py)  
+
+`$ pyinstaller app.py -F` does not includes print_app.py  
+BUT in RUNTIME, it can check print_app.py and import code from it.  
+
+
 ## cpython  
 
 [link to cpython](./cpython/readme.md)
