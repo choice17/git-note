@@ -6,6 +6,8 @@
 - **[merge branch](#merge-branch)**
 - **[cherry pick](#cherry-pick)**  
 - **[tagging](#tagging)**  
+- **[stash](#stash)**  
+- **[rebase](#rebase)**  
 - **[conflict](#conflict)**  
 - **[useful command](#useful-command)**
 - **[reference](#reference)**
@@ -167,8 +169,15 @@ tagging is to mapping the commit ID to self-defined tag name
   `at local (master)`  
 ```bash
   (master) git tag v1.0.0
-  (master) git tag 
+  (master) git tag -l
           v1.0.0
+```  
+
+* checkout tag  
+  `at local (master)`  
+```bash
+  (master) git co tags/<tagname>  
+  ((tagname)) 
 ```  
 
 * remove tag  
@@ -186,6 +195,85 @@ tagging is to mapping the commit ID to self-defined tag name
 
 ```bash
   git push --delete origin <tagname>
+```
+## stash  
+
+If developers are working in local feature branch but the works are not ready to commit yet.
+Developers can use `git stash` to save the changes to stash list and merge with remote commit.  
+
+
+```
+   check at local files uncommit files
+commits 
+A-B-C-D-E(HEAD) (feature)
+        |-changes on feature.py
+```
+* stash the changes  
+```bash
+  /* local feature branch */
+  (feature) git stash  
+  (feature) git stash list  
+  stash@{0} WIP on (feature): sd23sx92 Test stash
+```
+
+```bash
+  /* add with stash message */
+  (feature) git stash save "your stash message"
+```
+
+* 2. then pull/merge with the remote feature branch
+```bash
+  /* pull at local feature branch */
+  (feature) git pull  
+```
+  `stash apply the changes at stash list` `apply` - load the changes, `pop` - get and remove the stash  
+```bash
+  (feature) git stash apply stash@{<id>}
+```
+
+* delete stash  
+```bash
+  (feature) git stash drop stash@{<id>}
+```
+
+* stash unsaved untracked item  
+```bash
+  (feature) git stash save -u 
+```
+
+## rebase  
+
+Rebase is to edit the commit message, includes the commit history with author info
+```bash  
+  commits 
+  A-B-C-D-E(HEAD) (master)
+    |-|-> want to edit B-C commits
+```
+
+* git rebase
+
+```bash
+  $(master) git rebase -i A
+```
+
+Change all the commit you want to edit from `pick` to `edit`  
+
+```bash
+  /* rebase list */
+```
+  -pick- edit 0972sefc12 commit message B
+  -pick- edit 9032988sf0 commit message C
+  ...
+  pick 898ysifsid commit message E
+
+```bash  
+  $(master) git commit --amend --author="Author Name <email@address.com>"
+  /* edit commit message of B */
+  $(master) git rebase --continue  
+  $(master) git commit --amend --author="Author Name <email@address.com>"
+  /* edit commit message of C */
+  $(master) git rebase --continue  
+  $(master) git push -f origin master  
 ```
 
 ## conflict  

@@ -23,8 +23,8 @@ simple demo on public rtsp server
 
 **scaling** `-vf scale={int}x{int}`  
 
-**filter** scale with crop  
-`-vf "crop=in_w/2:in_h:in_w/2:0", scale=1200:400`  
+**filter** scale with crop  "crop=<size_x>:<size_y>:<start_pt_x>:<start_pt_y>"  
+`-vf "crop=in_w/2:in_h:in_w/2:0,scale=1200:400"`  
 
 **codec** `-c:{chn:v/a/v} {codec, or copy}`  
 
@@ -34,21 +34,21 @@ simple demo on public rtsp server
 
 **output format** `-f {output format} {output file}`  
 options  
-`-f rtp_mpegts rtp://192.168.1.147:8554`
+`-f rtp_mpegts rtp://192.168.1.147:8554`  
 `-f matroska output.mkv`  
 
 **add subtitle**   
-`ffmpeg -i {inputfile} -i {subtitle} -map 0:0 -map 1:0 -c:copy -f matroska output.mkv`
-: map {inputfile#}:{channel#}
+`ffmpeg -i {inputfile} -i {subtitle} -map 0:0 -map 1:0 -c:copy -f matroska output.mkv`  
+: map {inputfile#}:{channel#}  
 
 **extract subtitle**  
-`ffmpeg -i {input} -f srt/ass {-/output.ass/.srt}`
+`ffmpeg -i {input} -f srt/ass {-/output.ass/.srt}` 
 
 **extract video**  
 `ffmpeg -i {input} -map 0:v output.mp4` 
 
 **force output**  
-`ffmpeg -y -i {input} {output}`
+`ffmpeg -y -i {input} {output}` 
 
 **verbose** `-v 0-64 or -v {fatal, debug, critical, quiet, ...}`  
 
@@ -77,6 +77,15 @@ options
 
 **streaming from local device**  
 `ffmpeg -f dshow -i video="HP Truevision Full HD":audio="Microphone (Intel® Smart Sound Technology)"  -pix_fmt yuv420p -window_size qcif -f mpgets udp://127.0.0.1:8888`  
+
+**filter nal packet type**   
+`ffmpeg -i INPUT -c:v copy -bsf:v 'filter_units=pass_types=1-5' OUTPUT`  
+`ffmpeg -i INPUT -c:v copy -bsf:v 'filter_units=remove_types=35|38-40' OUTPUT`  
+`ffmpeg -i TT.h264  -c:v copy -bsf:v 'filter_units=pass_types=6' -f rawvideo -`  
+
+**add nal sei_user_data**    
+`ffmpeg -i INPUT.h264 -c:v libx264 -sn -an -bsf:v h264_metadata=sei_user_data='086f3693-  
+b7b3-4f2c-9653-21492feee5b8+hello' OUTPUT.h264`  
 
 ## ffprobe  
 
@@ -139,9 +148,9 @@ sdl2.dll
 
 ## compile 
 
-linker for ffmpeg lib [ref](https://fritzone.wordpress.com/2010/05/11/link-with-static-ffmpeg/)
+linker for ffmpeg lib [ref](https://fritzone.wordpress.com/2010/05/11/link-with-static-ffmpeg/)  
 
-1. Configure your ffmpeg to generate static libraries:
+1. Configure your ffmpeg to generate static libraries:  
 
 ```
 ./configure –enable-static –enable-gpl –enable-libfaac –enable-libfaad –enable-libx264 –enable-nonfree
@@ -160,16 +169,16 @@ gcc -Wall -g live_mystuff.c -o my_app \
 /usr/local/src/ffmpeg/libavutil/libavutil.a \
 -lpthread -lbz2 -lm -lz -lfaac -lmp3lame -lx264 -lfaad
 ```
-And DO NOT change the order of the libraries above, otherwise you’ll get lots of link errors like:
+And DO NOT change the order of the libraries above, otherwise you’ll get lots of link errors like:  
 
 ```
 /usr/local/src/ffmpeg/libavformat/libavformat.a(allformats.o): In function `av_register_all’:
 /usr/local/src/ffmpeg/libavformat/allformats.c:47: undefined reference to `avcodec_register_all’
 ```
 
-3. sample player prog
+3. sample player prog  
 
-[REFERENCE simplest ffplay](./simplest_ffplay_makefile)
+[REFERENCE simplest ffplay](./simplest_ffplay_makefile)  
 ```
 player/
       |-src/ffplay.cc
