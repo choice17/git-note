@@ -15,7 +15,9 @@
 * **[try](#try)** 
 * **[misc](#misc)**
 * **[def](#def)**
-* **[class](../../data_structure/python/class.md)
+* **[class](../../data_structure/python/class.md)**
+* **[function decorator](#funcdeco)**  
+
 
 ### operator  
 here python supports several operators:  
@@ -56,7 +58,7 @@ a = int('3')
 # ans = 3
 ```
 ### string
-```
+```python
 a = ''
 a = 'hello world'
 a = "hello world"
@@ -135,6 +137,8 @@ try:
 	print(noA)
 except NameError as e:
 	print(e)
+	raise ValueError("Not yet assign noA!") from e
+
 # ans = NameError referenced to variable not declared  
 try:
 	print(noA)
@@ -183,4 +187,135 @@ position args: 6
 'option args a (*kwargs): 3'
 'option args b (*kwargs): 6'
 ```
+### funcdeco  
 
+**Basic**  
+```python  
+class FOO(object):
+    def route(self, name):
+
+        def wrapper(fn):
+            print("registered FOO ", name)
+        
+            def ret_fn(*args):
+                print("hello world from FOO TOP")
+                ret =  fn(*args)
+                print("hello world from FOO BOTTOM")
+                return ret
+            return ret_fn
+
+        return wrapper
+
+app = FOO()
+
+@app.route("/get")
+def sayhi(*args):
+    print("say something: %s!", args)
+```
+
+At the function registeration, it will print
+
+```bash
+registered FOO  /get
+```
+
+```python
+sayhi("say hi here")
+```
+
+And to call sayhi function would output  
+
+```bash
+hello world from FOO TOP
+say something: %s! ('hi',)
+hello world from FOO BOTTOM
+```
+
+**Advanced**  
+
+Let's Look at more advance usage
+
+```python
+class BAR(FOO):
+
+    def route(self, name):
+
+        def wrapper(fn):
+            print("registered from BAR ", name)
+            a = super(BAR, self).route(name)(fn)
+            def ret_fn(*args):
+                print("hello world from BAR TOP")             
+                ret = a(*args)
+                print("hello world from BAR BOTTOM")
+                return ret
+            return ret_fn
+
+        return wrapper
+
+app = BAR()
+
+@app.route("/get")
+def sayhi(*args):
+    print("say something: %s!", args)
+    
+```
+
+Here BAR is super class from FOO, and super the decorator route.
+It outputs followings at the function registration.
+
+```python
+registered from BAR  /get
+registered FOO  /get
+```
+
+Let's see the output of `sayhi("hi")`  
+
+```bash
+hello world from BAR TOP
+hello world from FOO TOP
+say something: %s! ('hi',)
+hello world from FOO BOTTOM
+hello world from BAR BOTTOM
+```
+Hence, using function decoration helps to raise abstract level of code and simplify usage! cheers!  
+
+Here lets take a look into log time class
+```python
+class LOGGER(object):
+    
+    __slots__ = ('log')
+    def __init__(self):
+        self.log ={}
+
+    def logTime(self, name):
+
+        def ret_fn(fn):
+            key = "%s_%s"%(name,fn.__name__)
+            self.log[key] = 0
+            def wrapper(*args, **kwargs):
+                ti = T.time()
+                ret = fn(*args, **kwargs)
+                self.log[key] = T.time() - ti            
+                return ret
+
+            return wrapper
+
+        return ret_fn	
+
+log = LOGGER()
+
+class BAR(FOO):
+///////////////////////
+    @log.logTime("BAR")
+    def play(self):
+        T.sleep(1)
+        print("i am playing!")
+```
+```python
+app = BAR()
+app.play()
+print(log.log)
+```
+```bash
+{'BAR_play': 0.9998998641967773}
+```
