@@ -3,9 +3,12 @@
 
 #include <stdio.h>
 
+#define IMAGE 0
+
 int main(void)
 {
 	//Image img = createImageTest(3,4,1);
+#if IMAGE
 	Image imgN = createImageTest(18,80,1);
 	/*printf("imgN shape w:%d, h:%d, c:%d, pixel0: %hu\n", 6, 8, 2, getpixel(&imgN, 6, 8, 2));
 	printImageA(&img);
@@ -18,11 +21,20 @@ int main(void)
 	printf("img shape w:%d, h:%d, c:%d, pixel0: %hu\n", img.w, img.h, img.c, getpixel(&img, 2, 4, 2));
 	printImageA(&img);
 	//printImage(&img, 0, 3, 0, 4, 0, 3);
-	*/printf("\n");
+	*/
+	printf("\n");
 	printImageA(&imgN);
 	Image nimg = resize(&imgN, 9, 20, 0);
 	printImageA(&nimg);
 	freeImage(&imgN);
 	freeImage(&nimg);
 	return 0;
+#else
+	printf("hi");
+	ImageN img = createImageNTest(3,5,3);
+	printImageN(&img);
+	freeImageN(&img);
+	return 0;
+#endif 
+
 }

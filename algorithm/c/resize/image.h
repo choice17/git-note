@@ -1,7 +1,7 @@
 #ifndef IMAGE_H_
 #define IMAGE_H_
 
-#define INFO  //printf
+#define INFO  printf
 
 typedef char                   INT8;
 typedef unsigned char          UINT8;
@@ -67,6 +67,7 @@ typedef struct {
 } ImageN;
 
 Image createImageTest(int h, int w, int c);
+ImageN createImageNTest(int h, int w, int c);
 Image createImageEmpty(int h, int w, int c);
 Image createImageZero(int h, int w, int c);
 ImageN createImageNEmpty(int h, int w, int c);
@@ -76,6 +77,7 @@ void printImage(Image *img, int h, int to_h,
 	                        int w, int to_w,
 	                        int c, int to_c);
 void printImageA(Image *img);
+void printImageN(ImageN *img);
 
 void setImage(const Image *src, int h, int to_h,
 	                      int w, int to_w,
