@@ -20,7 +20,13 @@ def main():
 	if os.path.exists(FILE):
 		fobj = open(FILE,'r').read()
 		P = importModule(fobj, FILE)
-		P.print_app()
+
+		code = """
+a = P.print_app()
+b = P.print_bar()
+print('print a:(%s) and b:(%s) from main' %(a, b))
+"""
+		exec(code)
 
 if __name__ == "__main__":
 	main()
