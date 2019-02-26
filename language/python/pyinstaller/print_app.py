@@ -1,6 +1,8 @@
-from print_bar import *
+
+from utils import import_abs
+p = import_abs("print_bar")
 
 def print_app():
-	a = "Hello world from print_app!"
-	print(a)
-	return a
+	print("Hello world from print_app!")
+	p.BAR()
+	p.print_bar()
