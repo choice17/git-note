@@ -93,7 +93,6 @@ void printImageA(Image *img)
 void printImageN(ImageN *img)
 {
 	int i, j, k;
-	int wh = img->w * img->h;
 	for (i=0; i<img->c; ++i) {
 		INFO("c:%d\n[",i);
 		for (j=0; j<img->h; ++j) {
@@ -179,18 +178,16 @@ Image createImageZero(int h, int w, int c)
 
 ImageN createImageNEmpty(int h, int w, int c)
 {
-	ImageN image = {0};
-	int size = w * h * c;
-	UINT8 *data = (UINT8 *) malloc(size * sizeof(UINT8));
+	ImageN image;
 	int i, j;
-	int wh = w * h;
+	image.data = (UINT8 ***) malloc(c * sizeof(UINT8**));
 	for (i = 0; i < c; i++) {
-		image.data[i] = (UINT8**)data;
+		image.data[i] = (UINT8 **) malloc(h * sizeof(UINT8*));
 		for (j = 0; j < h; j++) {
-			image.data[i][j] = data;
-			data += w;
+			image.data[i][j] = (UINT8 *) malloc(w * sizeof(UINT8));
 		}
 	}
+	
 	image.w = w;
 	image.h = h;
 	image.c = c;
@@ -200,20 +197,16 @@ ImageN createImageNEmpty(int h, int w, int c)
 ImageN createImageNTest(int h, int w, int c)
 {
 	ImageN image = {0};
-	int size = w * h * c;
-	UINT8 *data = (UINT8 *) malloc(size * sizeof(UINT8));
+
 	int i, j, k;
-	int wh = w * h;
+	image.data = (UINT8 ***) malloc(c * sizeof(UINT8**));
 	for (i = 0; i < c; i++) {
-		INFO("[i:%d]\n", i);
-		image.data[i] = data;
+		image.data[i] = (UINT8 **) malloc(h * sizeof(UINT8*));
 		for (j = 0; j < h; j++) {
-			INFO("[j:%d]\n", j);
-			image.data[i][j] = data;
-			for (k < 0; k < w; k++) {
-				image.data[i][j][k] = i*j*w + j*w + k;
+			image.data[i][j] = (UINT8 *) malloc(w * sizeof(UINT8));
+			for (k = 0; k < w; k++) {
+				image.data[i][j][k] = i*h*w + j*w + k;
 			}
-			data += w;
 		}
 	}
 	image.w = w;
@@ -226,15 +219,13 @@ ImageN createImageNTest(int h, int w, int c)
 ImageN createImageNZero(int h, int w, int c)
 {
 	ImageN image = {0};
-	int size = w * h * c;
-	UINT8 *data = (UINT8 *) calloc(size, sizeof(UINT8));
+
 	int i, j;
-	int wh = w * h;
+	image.data = (UINT8 ***) calloc(c, sizeof(UINT8**));
 	for (i = 0; i < c; i++) {
-		image.data[i] = (UINT8**)data;
+		image.data[i] = (UINT8 **) calloc(h, sizeof(UINT8*));
 		for (j = 0; j < h; j++) {
-			image.data[i][j] = data;
-			data += w;
+			image.data[i][j] = (UINT8 *) calloc(w, sizeof(UINT8));
 		}
 	}
 	image.w = w;
@@ -243,11 +234,20 @@ ImageN createImageNZero(int h, int w, int c)
 	return image;
 }
 
-void freeImage(Image *image)
+void freeImage(Image *img)
 {
-	free(&image->data);
+	free(&img->data);
 }
-void freeImageN(ImageN *image)
+void freeImageN(ImageN *img)
 {
-	free(&image->data);
+	int i,j;
+	for (i=0; i<img->c; ++i)
+	{
+		for (j=0; j<img->h; ++j)
+		{
+			free(img->data[i][j]);
+		}
+		free(img->data[i]);
+	}
+	free(img->data);
 }

@@ -30,10 +30,13 @@ int main(void)
 	freeImage(&nimg);
 	return 0;
 #else
-	printf("hi");
-	ImageN img = createImageNTest(3,5,3);
+	ImageN img = createImageNTest(18,20,1);
 	printImageN(&img);
+	ImageN nimg = resizeN(&img, 5, 8, 0);
+	printf("hih\n");
+	printImageN(&nimg);
 	freeImageN(&img);
+	freeImageN(&nimg);
 	return 0;
 #endif 
 
