@@ -25,6 +25,11 @@
 **sed** rename file content inplace
 `$ sed -i "s/<origin>/<replace>/g" *<file>`  
 
+**time**   
+**forloop**  
+`time -p bash -c "for (( i=0; i<10; i++ )); do command1; command2; done;"`  
+`time (for i in {1..10}; do sleep 1 ; done)`  
+
 ## pipvenv  
 
 ```python
