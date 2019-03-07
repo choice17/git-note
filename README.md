@@ -32,6 +32,10 @@
 [[py]](./algorithm/python/_blob_detect.py)
 - **binaryTreeReversal**
 [[c++]](./algorithm/c++/binaryTreeReversal.cpp)
+- **resize**
+[[c]](./algorithm/c/resize/resize.c)
+[[py/cython]](./algorithm/python/resize/resize.ipynb)
+
 
 ## data_structure
 - **c/c++**  
