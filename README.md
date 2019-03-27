@@ -11,6 +11,7 @@
 - **[Script](#script)**  
 - **[Application](#application)**  
 - **[Machine Learning](./machine_learning/machine_learning.md)**  
+- **[Computer vision](./computer_vision/computer_vision.md)**  
 
 ## basic  
 - **[c++](./language/C++.md)**  
