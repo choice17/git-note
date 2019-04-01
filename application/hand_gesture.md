@@ -26,3 +26,5 @@
 - [Complementary Filter](http://web.archive.org/web/20091121085323/http://www.mikroquad.com/bin/view/Research/ComplementaryFilter)  
 - [Stack overflow for IMU data](https://stackoverflow.com/questions/1586658/combine-gyroscope-and-accelerometer-data)  
 - [Kalman filter git](https://github.com/rlabbe/Kalman-and-Bayesian-Filters-in-Python)  
+- [Kalman filter explaination v1](https://www.kalmanfilter.net/alphabeta.html)
+- [kalman filter explaination v2](https://medium.com/@serrano_223/extended-kalman-filters-for-dummies-4168c68e2117)
