@@ -11,3 +11,16 @@ def _bubblesort(array_in):
 				array_in[j+1] = array_in[j]
 				array_in[j] = temp_
 	return array_in
+
+def main():
+	_min = -9999
+	_max = 9999
+	_len = 10
+	li = np.random.randint(_min, _max, (_len))
+	print(li)
+	_bubblesort(li)
+	print(li)
+
+
+if __name__ == '__main__':
+	main()

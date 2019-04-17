@@ -33,6 +33,8 @@
 [[py]](./algorithm/python/_blob_detect.py)
 - **binaryTreeReversal**
 [[c++]](./algorithm/c++/binaryTreeReversal.cpp)
+- **breadthFirstSearch(BinaryTree)**
+[[py]](./algorithm/python/_breadthfirst.py)
 
 ## data_structure
 - **c/c++**  
@@ -60,3 +62,18 @@ myscript-python
 
 ## application  
 - **[Flask-keras-REST](./application/flask_keras_rest.md)**  
+
+## TODO Study list
+- [ ] PyQt  
+- [ ] Tensorflow library  
+- [ ] Project IMU data analysis  
+- [ ] Algorithm on Graph  
+
+"""python
+1)  Big O notation.  Interviewers love this.  Best-case, average case, worst case.  Know this for common algorithms, and be able to explain why.
+2)  Hash tables.  The solution to most interview questions is 'hashtable'.  I'm not kidding (but you will be asked to explain yourself).
+3)  Binary Search Trees.  Because O(Log(n)) is better than O(n) (well, asymptotically speaking).
+4)  Linked lists.  If you can explain them, it demonstrates that you understand the memory model and have done more than memorize syntax.
+5)  Searching and sorting algorithms:  Merge sort, sort stability, quicksort, O notation of each.
+6)  Graph Theory: Adjacency lists, Dijkstra's algorithm, Cycle finding.
+"""
