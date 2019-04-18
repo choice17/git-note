@@ -33,6 +33,7 @@
 [[py]](./algorithm/python/_blob_detect.py)
 - **binaryTreeReversal**
 [[c++]](./algorithm/c++/binaryTreeReversal.cpp)
+[[py]](./algorithm/python/_binarytreereversal.py)
 - **breadthFirstSearch(BinaryTree)**
 [[py]](./algorithm/python/_breadthfirst.py)
 
