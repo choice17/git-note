@@ -52,6 +52,7 @@
 - **[ffmpeg](./library/ffmpeg.md)**  
 - **[tensorflow](./library/tensorflow.md)**  
 - **[darknet](./library/darknet.md)**  
+- **[protobuf](./library/protobuf.md)**  
 
 ## linux 
 - **[pkg-config](./linux/pkg-config.md)**  
@@ -64,11 +65,17 @@ myscript-python
 - **[Flask-keras-REST](./application/flask_keras_rest.md)**  
 
 ## TODO Study list
+- [x] Protobuf (python)
+- [ ] Javascript, JQuery, AngularJs
 - [ ] PyQt  
 - [ ] Tensorflow library  
 - [ ] Project IMU data analysis  
 - [ ] Algorithm on Graph  
+- [ ] Send Email
 
+## MISC
+
+Note.
 """python
 1)  Big O notation.  Interviewers love this.  Best-case, average case, worst case.  Know this for common algorithms, and be able to explain why.
 2)  Hash tables.  The solution to most interview questions is 'hashtable'.  I'm not kidding (but you will be asked to explain yourself).
@@ -77,3 +84,15 @@ myscript-python
 5)  Searching and sorting algorithms:  Merge sort, sort stability, quicksort, O notation of each.
 6)  Graph Theory: Adjacency lists, Dijkstra's algorithm, Cycle finding.
 """
+
+"""
+Curl Post example Server 
+https://gist.github.com/subfuzion/08c5d85437d5d4f00e58
+
+Curl Post in C
+https://stackoverflow.com/questions/23034325/post-json-to-url-using-curl-and-c
+https://blog.csdn.net/dgyanyong/article/details/14166217
+"""
+
+
+

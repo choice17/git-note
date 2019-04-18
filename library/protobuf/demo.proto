@@ -1,0 +1,37 @@
+// https://blog.gtwang.org/programming/python-protocol-buffers-tutorial/
+/* Simple Proto demo */
+
+// Protocol dataformat
+syntax = "proto2";
+
+// Package name not necessary for python anyway
+package tutorial;
+
+// define proto message class  
+message Person {
+  // attr param 
+  required string name = 1;
+  required int32 id = 2;
+  optional string email = 3;
+
+  // suppport enum
+  enum PhoneType {
+    MOBILE = 0;
+    HOME = 1;
+    WORK = 2;
+  }
+
+  // define sub class inside main class
+  message PhoneNumber {
+    required string number = 1;
+    optional PhoneType type = 2 [default = HOME];
+  }
+
+  // repeated attr [0 - ...]
+  repeated PhoneNumber phones = 4;
+}
+
+message AddressBook {
+  // repeated attr [0. ... ]
+  repeated Person people = 1;
+}
