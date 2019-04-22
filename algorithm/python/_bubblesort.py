@@ -5,7 +5,7 @@ def _bubblesort(array_in):
 		return array_in
 	arrayLen = len(array_in)
 	for i in range(arrayLen-1):
-		for j in np.arange(i,arrayLen-1):
+		for j in np.arange(arrayLen-1):
 			if  array_in[j]>=array_in[j+1]:
 				temp_ = array_in[j+1]
 				array_in[j+1] = array_in[j]

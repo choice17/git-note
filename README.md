@@ -22,14 +22,15 @@
 
 ## algorithm  
 - **bubblesort**
-[[image]](./files/imagelist.md#blob)
 [[py]](./algorithm/python/_bubblesort.py)
+[[c]](./algorithm/c/_bubblesort.c)
 - **mergesort**
 [[py]](./algorithm/python/_mergesort.py)
 - **quicksort**
 [[py]](./algorithm/python/_quicksort.py)
 [[matlab]](./algorithm/matlab/_quicksrot.py)
 - **blob detect**
+[[image]](./files/imagelist.md#blob)
 [[py]](./algorithm/python/_blob_detect.py)
 - **binaryTreeReversal**
 [[c++]](./algorithm/c++/binaryTreeReversal.cpp)
