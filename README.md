@@ -28,6 +28,7 @@
 [[py]](./algorithm/python/_mergesort.py)
 - **quicksort**
 [[py]](./algorithm/python/_quicksort.py)
+[[c]](./algorithm/c/_quicksort.c)
 [[matlab]](./algorithm/matlab/_quicksrot.py)
 - **blob detect**
 [[image]](./files/imagelist.md#blob)
