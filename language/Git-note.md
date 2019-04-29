@@ -1,16 +1,17 @@
 # git-note
 
 ## content table
-- **[git initalize config](#inital-config)**
-- **[branches management](#branches-management)**
-- **[merge branch](#merge-branch)**
+- **[git initalize config](#inital-config)**  
+- **[branches management](#branches-management)**  
+- **[merge branch](#merge-branch)**  
 - **[cherry pick](#cherry-pick)**  
 - **[tagging](#tagging)**  
 - **[stash](#stash)**  
 - **[rebase](#rebase)**  
+- **[reflog](#reflog)**  
 - **[conflict](#conflict)**  
-- **[useful command](#useful-command)**
-- **[reference](#reference)**
+- **[useful command](#useful-command)**  
+- **[reference](#reference)**  
 - **[gitconfig](#gitconfig)**  
 - **[gitmessage](#gitmessage)**  
 
@@ -103,7 +104,7 @@
 ```bash
   git checkout master
 
-  git rebase -i test
+  git rebase -i test<desired commit>
 ```
 
 ## merge branch  
@@ -276,6 +277,54 @@ Change all the commit you want to edit from `pick` to `edit`
   $(master) git push -f origin master  
 ```
 
+Merge squash the commit in local branch
+```bash
+  /* rebase list */
+```
+  pick 0972sefc12 commit message B
+  -pick- s 9032988sf0 commit message C
+  ...
+  -pick- s 898ysifsid commit message E
+
+=> Edit this next page for squash rebase  
+
+```bash
+* this is the first commit message
+commit message B <& C>
+-* this is the second commit message-
+-Commit message C-
+```
+
+## reflog  
+
+This is very power tool. You can force tracking on any commit you make in local branch  
+
+```
+$ git reflog
+```
+
+Then it will list all recent commit record for checkout / cherry-pick  
+
+## revert  
+
+On Public branch, sometimes you push some failed commit. One way to do it is to use revert command, as normally you are not able to do rebase, delete a commit on public remote branch.
+
+
+```bash  
+  commits 
+  A-B-C-D-E(HEAD) (master)
+      |-fail commit
+```
+
+In this case, you can simply use to push the revert commit.
+
+```
+$ git revert commit-C
+$ git push 
+```
+
+
+
 ## conflict  
 
 There may be certain conflict during merging, one method is decide the conflict part.
@@ -291,6 +340,11 @@ You have to select one by removing the extra text.
 ```
 
 One tip is to use powerful tool `vim diff <file1> <fil2>`  
+
+More powerful tool is to use meld <directory>   
+meld helps to fix conflicts  
+
+$ sudo apt-get install meld 
 
 ## useful command  
 
