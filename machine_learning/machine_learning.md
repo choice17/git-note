@@ -109,3 +109,8 @@
 * [genetic algorithm]  
 
 
+TODO
+1. https://scikit-learn.org/stable/auto_examples/svm/plot_iris.html#sphx-glr-auto-examples-svm-plot-iris-py
+[ ] [Add svm kernel function poly funct]
+[ ] [Add svm mesh plot]
+[ ] [Add svr support vector regression]
