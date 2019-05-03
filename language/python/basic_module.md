@@ -508,6 +508,24 @@ For example
 BUT in RUNTIME, it can check print_app.py and import code from it.  
 
 
+5. Create separate env for clean build pyinstaller
+create conda virtual env
+>> conda create -n build_env python=3.5.5 --no-default-packages
+
+6. install packages
+>> activate build_env
+>> pip install pyinstaller==3.3.1
+>> pip install msgpack
+>> pip install pypiwin32
+>> pip install opencv-python==3.4.1.15  
+>> conda install av -c conda-forge
+>> conda install -c conda-forge numpy openblas 
+
+7. checking non-python static library   
+a. move opencv_ffmpeg341_64.dll to building env (it locates at installed opencv folder)
+
+
+
 ## cpython  
 
 [link to cpython](./cpython/readme.md)
