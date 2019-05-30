@@ -4,3 +4,4 @@
 <img src="./blob.jpg" width="200" height="200" />
 <img src="./low_constrast.jpg" width="300" height="200"/>
 <img src="./mono.jpg" width="200" height="200"/>
+<img src="./VOC_2007_000733.jpg" width="200" height="200"/>

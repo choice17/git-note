@@ -4,6 +4,8 @@
 * **[intro](#intro)**  
 * **[tools](#tools)**  
 * **[lite](#lite)**  
+* **[minimum_example](#minimumexample)**  
+
 
 ## intro
 
@@ -123,4 +125,8 @@ checkout `tensorflow/tensorflow/contrib/lite/tools/benchmark` note your have to 
 * proj
 checkout `tensorflow/tensorflow/contrib/lite/examples/label_image`
 
+
+## minimumexample  
+
+[example](./tensorflow/minimum.py)
 
