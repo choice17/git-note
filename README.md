@@ -33,6 +33,8 @@
 - **blob detect**
 [[image]](./files/imagelist.md#blob)
 [[py]](./algorithm/python/_blob_detect.py)
+- **blob to box**
+[[c]](./algorithm/c/_blobToBox.c)
 - **binaryTreeReversal**
 [[c++]](./algorithm/c++/binaryTreeReversal.cpp)
 [[py]](./algorithm/python/_binarytreereversal.py)

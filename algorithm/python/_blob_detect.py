@@ -120,7 +120,7 @@ class Connected_algo:
 
 if __name__ == "__main__":
     
-    im_name = "blob.jpg"
+    im_name = "../../files/blob.jpg"
     b_img = Connected_algo.binarize_img(im_name)
 
     d_img = b_img
