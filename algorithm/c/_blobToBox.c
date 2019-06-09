@@ -57,7 +57,7 @@ int blobToBox(const uint8_t *grid, REGION_LIST_S *olist, const INFO_S *info)
 {
 #define EXPAND_RES
 
-    int i, j, r;
+    int i, j;
     int16_t idx[REGION_NUM_MAX] = { 0 };
     REGION_LIST_S list = { 0 };
     list.num = -1;
@@ -129,6 +129,38 @@ int blobToBox(const uint8_t *grid, REGION_LIST_S *olist, const INFO_S *info)
 #endif /* DEBUG */
 }
 
+/**
+ *@brief connected component into grid cell from region list
+ */
+int blobToGrid(const REGION_LIST_S *list, uint8_t *grid, const INFO_S *info)
+{
+    int i, j, k;
+    REGION_S rect;
+    for (i = 0; i < list->num; i++) {
+        //nbjbj
+        rect.sx = (list->rgn[i].sx * info->grid_w + (info->res_w >> 1 )) / info->res_w;
+        rect.sy = (list->rgn[i].sy * info->grid_h + (info->res_h >> 1 ))/ info->res_h;
+        rect.ex = (list->rgn[i].ex * info->grid_w + (info->res_w >> 1 ))/ info->res_w;
+        rect.ey = (list->rgn[i].ey * info->grid_h + (info->res_h >> 1 ))/ info->res_h;
+        for (j = rect.sy; j < rect.ey; j++) {
+            for (k = rect.sx; k < rect.ex; k++) {
+                grid[j * info->grid_w + k] = 1;
+            }
+        }
+    }
+
+#ifdef DEBUG
+    printf("[\n");
+    for (j = 0; j < info->grid_h; j++) {
+        for (k = 0; k < info->grid_w; k++) {
+            printf("%d,", grid[j * info->grid_w + k]);
+        }
+        printf("\n");
+    }
+    printf("]\n");
+#endif /* DEBUG */
+}
+
 
 void main(void)
 {
@@ -137,4 +169,7 @@ void main(void)
     INFO_S info = {.grid_w=W, .grid_h=H, .res_w=PICW, .res_h=PICH};
 
     blobToBox(g_grid, &list, &info);
+
+    uint8_t grid[W * H] = { 0 };
+    blobToGrid(&list, grid, &info);
 }
