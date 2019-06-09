@@ -21,6 +21,8 @@
 - **[python](./language/python.md)**
 
 ## algorithm  
+- **base64**
+[[c]](./algorithm/c/b64.c)
 - **bubblesort**
 [[py]](./algorithm/python/_bubblesort.py)
 [[c]](./algorithm/c/_bubblesort.c)
