@@ -5,6 +5,7 @@
 * **[make file](#make_file)**  
 * **[file ptr](#file_ptr)**  
 * **[unix socket](#unix_socket)**  
+* **[simd](#simd)**  
 
 ## make_file
 
@@ -53,3 +54,12 @@ Unix socket for interprocess communication
 * [server](./c/unix_socket/server.c)  
 * [client](./c/unix_socket/client.c)  
 * [make](./c/unix_socket/Makefile)  
+
+## simd  
+
+Single instruction multiple data  
+Exists in most modern CPU  
+MMX -> SSE -> SSE4 -> AVX -> AVX2 -> SSE5 -> 3DNow!
+
+* [hello world](./c/simd/simd.c)  
+
