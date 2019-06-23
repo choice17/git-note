@@ -60,6 +60,7 @@
 - **[tensorflow](./library/tensorflow.md)**  
 - **[darknet](./library/darknet.md)**  
 - **[protobuf](./library/protobuf.md)**  
+- **[pyaudio](./library/pyaudio.md)**  
 
 ## linux 
 - **[pkg-config](./linux/pkg-config.md)**  
