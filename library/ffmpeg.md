@@ -4,6 +4,7 @@
 * **[ffmpeg](#ffmpeg)**  
 * **[ffprobe](#ffprobe)**  
 * **[ffplay](#ffplay)**  
+* **[ffserver](#ffserver)**  
 * **[libav](#libav)**  
 * **[sdl](#sdl)**  
 * **[compile](#compile)**  
@@ -86,6 +87,107 @@ options
 **add nal sei_user_data**    
 `ffmpeg -i INPUT.h264 -c:v libx264 -sn -an -bsf:v h264_metadata=sei_user_data='086f3693-  
 b7b3-4f2c-9653-21492feee5b8+hello' OUTPUT.h264`  
+
+**stream to m3u8**
+```$ ffmpeg -y \
+ -i sample.mov \
+ -codec copy \
+ -bsf h264_mp4toannexb \
+ -map 0 \
+ -f segment \
+ -segment_time 10 \
+ -segment_format mpegts \
+ -segment_list "/Library/WebServer/Documents/vod/prog_index.m3u8" \
+ -segment_list_type m3u8 \
+ "/Library/WebServer/Documents/vod/fileSequence%d.ts"
+```
+```
+$ ffmpeg -y \
+    -i sample.mov \
+    -hls_time 9 \
+    -hls_segment_filename "/Library/WebServer/Documents/vod/fileSequence%d.ts" \
+    -hls_playlist_type vod \
+    /Library/WebServer/Documents/vod/prog_index.m3u8
+```
+
+**streaming with ffserver**  
+
+For loop to avoid connection failures. This command allows ffmpeg to streaming in rasbperry pi 3 linux raspbian env with camera connected in `/dev/video`.
+```
+#!/bin/bash
+
+
+while true; do
+	ffmpeg -r 50 -s 640x480 -f video4linux2 -i /dev/video0 http://localhost:8090/feed1.ffm
+	sleep 5 
+done
+```
+
+## ffserver  
+
+Although ffserver is no-longer being maintaining, it is still useful for streaming service or you may use live555 for alternative.
+
+`ffserver -d -f <ffserver.conf>` to input ffserver config  
+
+* RTSP  
+```python 
+### ffserver.conf  ###
+HttpPort 8090 
+RtspPort 8554
+HttpBindAddress 0.0.0.0 
+MaxClients 1000 
+MaxBandwidth 10000 
+NoDaemon 
+
+<Feed feed1.ffm> 
+File /tmp/feed1.ffm 
+FileMaxSize 5M 
+</Feed> 
+
+<Stream live/0>
+Feed feed1.ffm
+Format rtp
+VideoCodec mpeg4
+VideoFrameRate 50
+VideoBufferSize 80000
+VideoBitRate 100
+VideoQMin 1
+VideoQMax 5
+VideoSize 640x480
+PreRoll 0
+Noaudio
+</Stream>
+```
+
+* HTTP 
+```
+HttpPort 8090 
+HttpBindAddress 0.0.0.0 
+MaxClients 3 
+MaxBandwidth 10000
+NoDaemon 
+
+<Feed feed1.ffm> 
+File /tmp/feed1.ffm 
+FileMaxSize 5M 
+</Feed> 
+
+<Stream live/0>
+Feed feed1.ffm
+Format mpjpeg
+VideoFrameRate 25
+VideoBufferSize 80000
+VideoBitRate 300
+VideoQMin 2
+VideoQMax 30
+VideoSize 640x480
+VideoIntraOnly
+Noaudio
+
+Strict -1
+</Stream>
+```
+
 
 ## ffprobe  
 
