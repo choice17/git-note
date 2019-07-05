@@ -51,16 +51,14 @@ N = {D1:"D1",D2:"D2",D3:"D3",D4:"D4",D5:"D5",D6:"D6",D7:"D6",
 
 def sine(frequency, t, sampleRate,shift=np.pi/4):
     '''
-    產生 sin wave
- 
     :Args:
-     - frequency: 欲產生的頻率 Hz
-     - t: 播放時間長度 seconds
-     - sampleRate: 取樣頻率 1/s
+     - frequency: Hz
+     - t: seconds
+     - sampleRate: 1/s
     '''
-    # 播放數量
+    
     n = int(t * sampleRate) 
-    # 每秒轉動的角度再細分為取樣間隔
+    
     interval = 2 * np.pi * frequency / sampleRate
     sn = int((shift / (2 * np.pi)) * interval)
     sn_2 = int((shift / 2 / (2 * np.pi)) * interval)
@@ -85,28 +83,70 @@ def sine(frequency, t, sampleRate,shift=np.pi/4):
     return res
     #return sine_2
  
+
+def piano(frequency, t, sampleRate,shift=np.pi/4):
+    n = int(t * sampleRate)
+    Fin  =2 * np.pi / sampleRate
+    interval = Fin * frequency
+    sn = int((shift / (2 * np.pi)) * interval)
+    #sine_2 = np.cos(np.arange(-sn, n-sn) * interval ) * 1 - 0.95
+    #sine_2 = np.where(sine_2 >= 0, sine_2, 0)
+
+    s0 = np.cos(np.arange(n) * interval) * 0.5
+    s0 += np.cos(np.arange(n) * interval * 80) * 0.3
+    s1 = np.cos(np.arange(n) * interval*2) * 0.5 * 0.1
+
+    s2 = np.cos(np.arange(n) * interval*4) * 0.5 * 0.1 * 0.5
+    s3 = np.cos(np.arange(n) * interval*8) * 0.5 * 0.1 * 0.6
+    s4 = np.cos(np.arange(n) * interval*16) * 0.5 * 0.1 * 0.1
+
+    #cD = np.cos(np.arange(n) * Fin) * 0.5 * 0.1
+    #cD *= np.random.randn(n) * 0.5 * 0.05
+    c0 = np.cos(np.arange(n) * interval * 0.5) * 0.5 * 0.1 * 0.5
+    c1 = np.cos(np.arange(n) * interval * 1.5) * 0.5 * 0.1 * 0.15
+    c2 = np.cos(np.arange(n) * interval * 2.5) * 0.5 * 0.1 * 0.1
+    c3 = np.cos(np.arange(n) * interval * 3.5) * 0.5 * 0.1 * 0.08
+    c4 = np.cos(np.arange(n) * interval * 4.5) * 0.5 * 0.1 * 0.07
+
+    s = s0 + s1 + s2 + s3 + s4 
+        #c0 + c1 + c2 + c3 + c4 # + cD
+
+    """
+    a_sn = int((np.pi/4 / 2 / (2 * np.pi)) * (np.pi / n / 2))
+    a = np.cos(np.arange(n) * np.pi / n / 2) * 0.8
+    a_ = np.cos(np.arange(a_sn,n+a_sn) * np.pi / n / 2) * 1
+    a *= a_
+    """
+    a_sn = int((np.pi/4 / 2 / (2 * np.pi)) * (np.pi / n / 2))
+    a_sn2 = int((np.pi / 2 / (2 * np.pi)) * (np.pi / n / 2))
+    a = np.cos(np.arange(n) * np.pi / n / 2) * 0.8
+    a_ = np.cos(np.arange(a_sn,n+a_sn) * np.pi / n / 2) * 1
+    a__ = np.cos(np.arange(a_sn2,n+a_sn2) * np.pi / n / 2) * 1
+    a *= a_# * a__)
+    a *= a__
  
+    res = s * a 
+    return res
+
 def play_tone(stream, frequency=440, t=1, sampleRate=44100):
     '''
-    播放特定頻率
- 
     :Args:
      - stream: 
-     - frequency: 欲產生的頻率 Hz
-     - t: 播放時間長度 seconds
-     - sampleRate: 取樣頻率 1/s
+     - frequency: Hz
+     - t: seconds
+     - sampleRate: 1/s
      - piano tone
     '''
 
     if type(frequency) == list:
         ratio = 1 / len(frequency)
-        data = sine(frequency[0], t, sampleRate) * ratio
+        data = piano(frequency[0], t, sampleRate) * ratio
         for f in frequency[1:]:
-            data += sine(f, t, sampleRate) * ratio
+            data += piano(f, t, sampleRate) * ratio
     else:
-        data = sine(frequency, t, sampleRate) * 0.7
+        #data = sine(frequency, t, sampleRate) * 0.7
+        data = piano(frequency, t, sampleRate) * 0.7
     
-    # 因 format 為  pyaudio.paFloat32，故轉換為 np.float32 並轉換為 bytearray
     _len = data.shape[0]
     res = np.empty((_len,2),dtype=np.float32)
     res[:,0] = data.astype(np.float32)
@@ -198,4 +238,4 @@ def main2():
 
 if __name__ == '__main__':
     main()
- 
+
