@@ -6,6 +6,7 @@
 * [grep](#grep)  
 * [netstat](#netstat)  
 * [ifconfig](#ifconfig)  
+* [rename](#rename)  
 * [vi](#vi)  
 * [killall](#killall)  
 * [top](#top)  
@@ -13,6 +14,7 @@
 * [cat](#cat)  
 * [touch](#touch)  
 * [tr](#tr)  
+* [clang](#clang)  
 
 ## ping  
 
@@ -39,6 +41,16 @@ $ find . -name "*.[ch]" -exec clang-format-3.9 -i {} \;
 
 ```
 $ sed -i "s/<pattern_to_find>/<patter_to_replace>/g" <wildcard>
+```
+
+## rename  
+
+usage of rename is similar to sed  
+
+```
+$ rename -f "s/<orig_pattern>/<to_pattern>/g" <file_pattern>
+e.g. /* tmp.log tmp_a.log => tak.log tak_a.log */
+$ rename -f "s/tmp/tak/g" *.c
 ```
 
 ## grep  
@@ -86,3 +98,56 @@ cat is like echo, but to echo all the content of a file
 ## touch  
 
 touch create a empty content file  
+
+## clang  
+
+```
+$ clang-format-3.9 before.c > after.c
+Edit
+Format One File with In-place Option
+Run clang-format on filename.c and directly overwrite filename.c with formatted output. (-i option stands for in-place)
+```
+```
+$ clang-format-3.9 -i filename.c
+Edit
+Format All Files in a Directory
+Run clang-format in your target directory on all .h and .c files.
+```
+```
+$ find . -name "*.[ch]" -exec clang-format-3.9 -i {} \;
+Or, you want to process .c and .h files separately.
+```
+```
+$ find . -name "*.h" -exec clang-format-3.9 -i {} \;
+$ find . -name "*.c" -exec clang-format-3.9 -i {} \;
+Edit
+Format All Files in a Directory with Sanity Check
+In short, formatting is very reliable.
+But if you really want to check program behavior is not changed after formatting, you can run the following steps.
+
+Before formatting, build all object files, strip debug information from them, and rename to *.o.orig.
+```
+
+```
+$ make all
+$ find . -name "*.o" -exec arm-augentix-linux-gnueabi-strip --strip-debug {} \;
+$ find . -name "*.o" -exec mv {} {}.orig \;
+$ find . -name "*.o.orig" 
+Run clang-format in your target directory on all .h and .c files.
+
+$ find . -name "*.h" -exec clang-format-3.9 -i {} \;
+$ find . -name "*.c" -exec clang-format-3.9 -i {} \;
+After formatting, build all object files, strip debug information from them, and compare to *.o.orig.
+
+$ make all
+$ find . -name "*.o" -exec arm-augentix-linux-gnueabi-strip --strip-debug {} \;
+$ find . -name "*.o" -exec diff {} {}.orig \;
+If any object code differ from original one, you can further check the cause by disassemble them.
+Take mpi_dev.o for example, the new object code differs from original one because it contains build date and time in the object code.
+
+$ diff mpi_dev.o mpi_dev.o.orig
+Binary files mpi_dev.o and mpi_dev.o.orig differ
+$ arm-augentix-linux-gnueabi-objdump -D mpi_dev.o > mpi_osd.o.asm
+$ arm-augentix-linux-gnueabi-objdump -D mpi_dev.o.orig > mpi_osd.o.orig.asm
+$ meld mpi_osd.o.asm mpi_osd.o.orig.asm
+```
