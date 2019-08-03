@@ -4,7 +4,12 @@ import os
 from datetime import datetime
 import time
 
-BASE_URL = "https://finance.yahoo.com/quote/{ID}/history"
+"""
+https://query1.finance.yahoo.com/v8/finance/chart/AAPL?symbol=AAPL&period1=0&period2=9999999999&interval=1d&includePrePost=true&events=div%2Csplit
+https://stackoverflow.com/questions/44030983/yahoo-finance-url-not-working
+"""
+
+BASE_URL = "https://finance.yahoo.com/quote/{ID}/history?p={ID}"
 QUERY_URL = "https://query1.finance.yahoo.com/v7/finance/download/{ID}?period1={PERIOD1}&period2={PERIOD2}&interval={INTERVAL}&events=history&crumb={CRUMB}"
 QUERY_URL_TEST = "https://query1.finance.yahoo.com/v7/finance/download/{ID}?period1=1530721419&period2=1562257419&interval={INTERVAL}&events=history&crumb={CRUMB}"
 COOKIE_KEY ="set-cookie"
@@ -43,8 +48,9 @@ class YAHOOFINANCE(object):
 
     def get_cookie(self):
         url = BASE_URL.format(ID=self.id)
-        res = requests.get(BASE_URL)
+        req = requests.get(BASE_URL)
         res = req.headers
+        print(res, req.content)
         self.cookie = res[COOKIE_KEY].split(";")[0][2:]
         self.fmt_txt = req.content
         print("Cookie:", self.cookie)
@@ -96,3 +102,30 @@ class YAHOOFINANCE(object):
         end = DateTimeConvertor.fromDate(time_end)
         self.p1 = start
         self.p2 = end
+
+
+import argparse
+
+def get_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-s", type=str, default="GOOG", help="symbol")
+    parser.add_argument("-sd", type=str, help="start date fmt:{YYYY:MM:DD}")
+    parser.add_argument("-ed", type=str, help="end date fmt:{YYYY:MM:DD}")
+
+    return parser.parse_args()
+
+def main():
+    args = get_args()
+    api = YAHOOFINANCE()
+    api.set_id(args.s)
+    api.get_cookie()
+    api.save_cookie()
+    res = api.download_csv().info()
+    csv_file = "res.csv"
+    with open(csv_file, "w") as f:
+        f.write(res)
+
+
+
+if __name__ == '__main__':
+    main()
