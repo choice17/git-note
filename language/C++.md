@@ -5,6 +5,7 @@
 * **[make file](#make_file)**  
 * **[file ptr](#file_ptr)**  
 * **[unix socket](#unix_socket)**  
+* **[win socket](#window_socket)**  
 * **[simd](#simd)**  
 
 ## make_file
@@ -55,11 +56,23 @@ Unix socket for interprocess communication
 * [client](./c/unix_socket/client.c)  
 * [make](./c/unix_socket/Makefile)  
 
+## window_socket  
+
+Window socket for inter device communication with python Popen interface
+
+* [server](./c/window_socket/win_server.c)  
+* [client](./c/window_socket/win_client.c)  
+* [make](./c/window_socket/Makefile)  
+* [python](./c/window_socket/pipe_test.py)  
+
 ## simd  
 
 Single instruction multiple data  
 Exists in most modern CPU  
 MMX -> SSE -> SSE4 -> AVX -> AVX2 -> SSE5 -> 3DNow!
+We can also enable SIMD neon by using compiler option!!
 
 * [hello world](./c/simd/simd.c)  
+
+* https://community.arm.com/developer/tools-software/tools/b/tools-software-ides-blog/posts/arm-cortex-a-processors-and-gcc-command-lines
 
