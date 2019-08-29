@@ -45,6 +45,8 @@
 [[py]](./algorithm/python/_breadthfirst.py)
 - **packbit(packbit)**
 [[c]](./algorithm/c/packbit.c)
+- **astar**
+[[py]](./algorithm/python/_astar.py)
 
 
 ## data_structure
