@@ -15,6 +15,7 @@
 * [touch](#touch)  
 * [tr](#tr)  
 * [clang](#clang)  
+* [mount](#mount)
 
 ## ping  
 
@@ -150,4 +151,10 @@ Binary files mpi_dev.o and mpi_dev.o.orig differ
 $ arm-augentix-linux-gnueabi-objdump -D mpi_dev.o > mpi_osd.o.asm
 $ arm-augentix-linux-gnueabi-objdump -D mpi_dev.o.orig > mpi_osd.o.orig.asm
 $ meld mpi_osd.o.asm mpi_osd.o.orig.asm
+```
+
+# mount 
+
+```
+$ mount -o port=2049,nolock,proto=tcp -t nfs 192.168.10.147:/ethnfs /mnt/nfs/ethnfs
 ```
