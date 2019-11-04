@@ -38,6 +38,9 @@
 [[py]](./algorithm/python/_blob_detect.py)
 - **blob to box**
 [[c]](./algorithm/c/_blobToBox.c)
+- **resize**
+[[c]](./algorithm/c/resize/resize.c)
+[[py/cython]](./algorithm/python/resize/resize.ipynb)
 - **binaryTreeReversal**
 [[c++]](./algorithm/c++/binaryTreeReversal.cpp)
 [[py]](./algorithm/python/_binarytreereversal.py)
