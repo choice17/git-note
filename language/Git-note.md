@@ -75,6 +75,8 @@
 * check the git history 
 ```bash
   git log <--stat> <commit-id>
+  git log --oneline -n<num>
+  git log --pretty=format:"%h%x09%an%x09%s" <branch>
 
   git status <commit-id>
 
