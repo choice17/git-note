@@ -260,6 +260,9 @@ Rebase is to edit the commit message, includes the commit history with author in
 ```
 
 Change all the commit you want to edit from `pick` to `edit`  
+Change all the commit sequence by edit the rows   
+Fix all the commit you want to merge to previous top `pick`, `pick` to `f`     
+Squash merge all the commit to previous top `pick`, from `pick` to `s`   
 
 ```bash
   /* rebase list */
