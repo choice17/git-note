@@ -29,7 +29,7 @@
 
 ## cluster 
 
-* [K-Means]  
+* [K-Means](./kmeans/kmeans.py)    
 * [KNN]  
 
 ## classifier  
@@ -52,7 +52,7 @@
 
 ## dimension_reduction  
 
-* [PCA] 
+* [PCA](./pca/pca.md)  
 * [TSNE]  
 
 ## evaluation  
