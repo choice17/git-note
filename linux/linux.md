@@ -16,6 +16,8 @@
 * [tr](#tr)  
 * [clang](#clang)  
 * [mount](#mount)
+* [tr](#tr)  
+* [sysctl](#sysctl)  
 
 ## ping  
 
@@ -153,8 +155,87 @@ $ arm-augentix-linux-gnueabi-objdump -D mpi_dev.o.orig > mpi_osd.o.orig.asm
 $ meld mpi_osd.o.asm mpi_osd.o.orig.asm
 ```
 
-# mount 
+## mount 
 
 ```
+## manual_mount_nfs
+
+NFS_IP=192.168.10.147
+NFS_NAME=ethnfs
+NFS_DIR=/mnt/nfs/ethnfs
+
+ping -c 1 -w 2 $NFS_IP
+$ mount -o port=2049,nolock,proto=tcp -t nfs $NFS_IP:/$NFS_NAME $NFS_DIR
+ or
 $ mount -o port=2049,nolock,proto=tcp -t nfs 192.168.10.147:/ethnfs /mnt/nfs/ethnfs
 ```
+
+## tr
+
+tr is something like sed 
+
+```
+IFACE=eth0
+
+ETHADDR=$(cat /sys/class/net/$IFACE/address)
+
+# Default MAC address set by U-Boot
+ETHADDR_DEFAULT=02:00:00:00:00:00
+
+set_random_ethaddr() {
+        ETHADDR=$(tr -dc A-F0-9 < /dev/urandom | head -c 6 | \
+                  sed -r 's/(..)/\1:/g;s/:$//;s/^/12:34:56:/')
+        echo "Randomize MAC address: $ETHADDR"
+        /sbin/ifdown $IFACE
+        ifconfig $IFACE hw ether $ETHADDR
+        /sbin/ifup $IFACE
+}
+
+
+case "$1" in
+        start)
+                # set MAC address to 12:34:56:XX:XX:XX
+                # if default MAC address is applied
+                if [ $ETHADDR = $ETHADDR_DEFAULT ]; then
+                        set_random_ethaddr
+                fi
+        ;;
+        stop)
+        ;;
+        restart|reload)
+                "$0" stop
+                "$0" start
+                ;;
+        *)
+                echo "Usage: $0 {start|stop|restart}"
+                exit 1
+        ;;
+esac
+```
+
+## sysctl  
+
+system ctrl module allows to broaden the bandwidth of network
+
+starting network
+```
+/sbin/sysctl -w net.core.rmem_default=524288
+/sbin/sysctl -w net.core.wmem_default=524288
+/sbin/sysctl -w net.core.rmem_max=624288
+/sbin/sysctl -w net.core.wmem_max=724288
+printf "Starting network: "
+/sbin/ifup -a
+```
+
+stoping network
+```
+printf "Stopping network: "
+/sbin/ifdown -a
+[ $? = 0 ] && echo "OK" || echo "FAIL"
+/sbin/sysctl -w net.core.rmem_default=163840
+/sbin/sysctl -w net.core.wmem_default=163840
+/sbin/sysctl -w net.core.rmem_max=163840
+/sbin/sysctl -w net.core.wmem_max=163840
+```   
+
+
