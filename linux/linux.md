@@ -19,6 +19,7 @@
 * [tr](#tr)  
 * [sysctl](#sysctl)  
 * [doc2unix](#doc2unix)  
+* [tar](#tar)  
 
 
 ## ping  
@@ -247,4 +248,22 @@ doc2unix is a binary function to convert WINDOW EOL file to UNIX format
 usage:  
 ```
 $ doc2unix <regex-file>
+```
+
+## tar  
+
+```
+Packaging only
+$ tar cvf <FileName>.tar <DirName>
+
+Unpack
+$ tar xvf <FileName>.tar
+```
+
+```
+compress to gzip
+$ tar zcvf <FileName>.tar.gz <DirName>
+
+extract from gzip
+$ tar zxvf <FileName>.tar.gz
 ```
