@@ -18,7 +18,7 @@ simple demo on public rtsp server
 
 `ffmpeg -i rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_114k.mov save.mp4`  
 
-**input file** `-i`
+**input file** `-i`  
 
 **output file** `save.mp4`   
 
@@ -52,6 +52,9 @@ options
 `ffmpeg -y -i {input} {output}` 
 
 **verbose** `-v 0-64 or -v {fatal, debug, critical, quiet, ...}`  
+
+**show all 264/264 nalu info**  
+`ffmpeg -i in.264 -c copy -bsf:v trace_headers -f null - 2> NALUS.txt`  
 
 **snapshot** 
 `ffmpeg -i {input} {output} -vframe 1 image.png`  
