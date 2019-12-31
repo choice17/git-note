@@ -7,6 +7,7 @@
 * **[linux cmd](#linuxcmd)**  
 * **[pip venv](#pipvenv)**  
 * **[conda venv](#condavenv)**  
+* **[mount nfs](#mountnfs)**  
 
 ## xmlschema
 
@@ -42,5 +43,33 @@ $ cd Script\activate.bat
 
 ```python
 $ conda create --name <myenv> python=<3.4> --no-default-packages
+```
+
+## mountnfs
+
+```
+Mount nfs
+
+connect nfs
+https://www.hanewin.net/nfs-e.htm
+Goto "NFS" page and setup as in the picture below.
+
+mount port 1058
+server port 2049
+udp thread 4
+30000 bytes transfer size
+udp /tcp
+nfs server ver 2/3
+async
+allow unix emulate hard link
+
+export page -> edit export files
+
+Add
+<NFS path> -name:usbnfs -maproot:0 -umask:000  -public
+ex.
+D:/ethnfs -name:ethfs -maproot:0 -umask:000  -public -name ethnfs
+
+restart server
 ```
 
