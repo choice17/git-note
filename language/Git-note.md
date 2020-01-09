@@ -10,6 +10,7 @@
 - **[rebase](#rebase)**  
 - **[reflog](#reflog)**  
 - **[conflict](#conflict)**  
+- **[remove file](#remove)**  
 - **[useful command](#useful-command)**  
 - **[reference](#reference)**  
 - **[gitconfig](#gitconfig)**  
@@ -59,17 +60,22 @@
 
 * checkout to the branch 
 ```bash
-  git checkout <branchname> -* <filename>
+  git checkout <branchname> -- <filename>
 ```
   
 * checkout to new branch 
 ```bash
-  git checkout -b <new branch> <src branch>
+  git checkout -b <new branch>
 ```
 
-* fetch (safely copy the new file from branch)
+* fetch (safely copy the new file from branch, only update git info, but not current file system)  
 ```bash
-  git fetch <branch>
+  git fetch origin <branch>
+```
+
+* pull (copy new file status from remote branch into current file systems)  
+```bash
+  git pull origin <branch>
 ```
 
 * check the git history 
@@ -85,24 +91,21 @@
   git diff <branch name>
 ```
 
-* merge master branch ex. 
+* merge remote master branch ex. 
 ```bash
-  git checkout master
+  git checkout <master>
 
-  git pull
+  git pull origin <master>
 
   git checkout <test>
-
-  git pull
-
-  git rebase -i master
 
   git checkout master
 
   git merge <test>
+  
 ```
  
- :x: avoid operatio: never use rebase on public branch 
+ :x: avoid operation: never use rebase on public branch 
 ```bash
   git checkout master
 
@@ -127,7 +130,9 @@
   `should now in (feature-1) branch`
 `catch up with develop branch before finishing the feature`
 ```bash
+  git co develop
   git fetch origin develop
+  git co feature-1
   gitk --all
   git merge origin/develop
 ```
@@ -300,6 +305,23 @@ commit message B <& C>
 -Commit message C-
 ```
 
+## remove  
+
+To remove unused files.  
+
+```bash
+/* check current linked files */
+$ git ls-files
+```  
+
+```bash
+/* remove files */
+$ git rm <files>
+
+/* remove directories */
+$ git rm -f <dir>
+```
+
 ## reflog  
 
 This is very power tool. You can force tracking on any commit you make in local branch  
@@ -327,8 +349,6 @@ In this case, you can simply use to push the revert commit.
 $ git revert commit-C
 $ git push 
 ```
-
-
 
 ## conflict  
 
@@ -420,8 +440,8 @@ u smudge = git-lfs smudge -- %f
   required = true
   clean = git-lfs clean -- %f
 [user]
-  name = Takchoi.Yu im147
-  email = takchoi.y@augentix.com
+  name = Takchoi.Yu
+  email = tcyu@umich.edu
 [commit]
     template = ~/.gitmessage
 [core]
@@ -433,6 +453,7 @@ u smudge = git-lfs smudge -- %f
     ci = commit
     co = checkout
     br = branch
+    rb = rebase
     lg = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all -n 100
     df = difftool -y
     mg = mergetool -y
