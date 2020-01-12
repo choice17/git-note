@@ -7,6 +7,7 @@
 * **[unix socket](#unix_socket)**  
 * **[win socket](#window_socket)**  
 * **[simd](#simd)**  
+* **[cpp on c](#cpp_on_c)**  
 
 ## make_file
 
@@ -75,4 +76,21 @@ We can also enable SIMD neon by using compiler option!!
 * [hello world](./c/simd/simd.c)  
 
 * https://community.arm.com/developer/tools-software/tools/b/tools-software-ides-blog/posts/arm-cortex-a-processors-and-gcc-command-lines
+
+## cpp_on_c  
+
+If we want to import cpp library into c project or 
+import c lib into cpp project.
+We have to add a thin wrapper layer code as a interface before using the library.
+
+The example demos c project using cpp opencv library.
+
+* [openv cpp on c](./c/cpp_on_c) 
+
+
+
+
+
+
+
 
