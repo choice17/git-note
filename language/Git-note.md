@@ -91,6 +91,12 @@
   git diff <branch name>
 ```
 
+Output the different commits between two branches.
+```bash
+  git log --left-right --graph --cherry-pick --oneline @...origin/mp-agt902-3 --pretty=format:"%h%x09%an%x09%s"
+```
+
+
 * merge remote master branch ex. 
 ```bash
   git checkout <master>
