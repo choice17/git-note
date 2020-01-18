@@ -70,6 +70,7 @@
 - **[darknet](./library/darknet.md)**  
 - **[protobuf](./library/protobuf.md)**  
 - **[pyaudio](./library/pyaudio.md)**  
+- **[pydicom](./library/pydicom.md)**  
 
 ## linux 
 - **[pkg-config](./linux/pkg-config.md)**  
@@ -94,21 +95,21 @@ myscript-python
 
 Note.
 """python
-1)  Big O notation.  Interviewers love this.  Best-case, average case, worst case.  Know this for common algorithms, and be able to explain why.
-2)  Hash tables.  The solution to most interview questions is 'hashtable'.  I'm not kidding (but you will be asked to explain yourself).
-3)  Binary Search Trees.  Because O(Log(n)) is better than O(n) (well, asymptotically speaking).
-4)  Linked lists.  If you can explain them, it demonstrates that you understand the memory model and have done more than memorize syntax.
-5)  Searching and sorting algorithms:  Merge sort, sort stability, quicksort, O notation of each.
-6)  Graph Theory: Adjacency lists, Dijkstra's algorithm, Cycle finding.
+1)  Big O notation.  Interviewers love this.  Best-case, average case, worst case.  Know this for common algorithms, and be able to explain why.  
+2)  Hash tables.  The solution to most interview questions is 'hashtable'.  I'm not kidding (but you will be asked to explain yourself).  
+3)  Binary Search Trees.  Because O(Log(n)) is better than O(n) (well, asymptotically speaking).  
+4)  Linked lists.  If you can explain them, it demonstrates that you understand the memory model and have done more than memorize syntax.  
+5)  Searching and sorting algorithms:  Merge sort, sort stability, quicksort, O notation of each.  
+6)  Graph Theory: Adjacency lists, Dijkstra's algorithm, Cycle finding.  
 """
 
 """
 Curl Post example Server 
-https://gist.github.com/subfuzion/08c5d85437d5d4f00e58
+https://gist.github.com/subfuzion/08c5d85437d5d4f00e58  
 
 Curl Post in C
-https://stackoverflow.com/questions/23034325/post-json-to-url-using-curl-and-c
-https://blog.csdn.net/dgyanyong/article/details/14166217
+https://stackoverflow.com/questions/23034325/  post-json-to-url-using-curl-and-c  
+https://blog.csdn.net/dgyanyong/article/details/14166217  
 """
 
 
