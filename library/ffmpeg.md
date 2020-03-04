@@ -94,6 +94,11 @@ options
 `ffmpeg -i INPUT.h264 -c:v libx264 -sn -an -bsf:v h264_metadata=sei_user_data='086f3693-  
 b7b3-4f2c-9653-21492feee5b8+hello' OUTPUT.h264`  
 
+**pipe NALU and SEI data to stdout**
+`ffmpeg -rtsp_transport tcp  -y -v fatal  -i "rtsp://192.168.0.1:8554/live/0" -vf scale=1280:720 -map v:0 -an -vs
+ync 2 -hide_banner  -f image2pipe -codec rawvideo  -pix_fmt bgr24 -  -c:v copy -f rawvideo -bsf:v 'filter_units=pass_typ
+es=6' -`
+
 **stream to m3u8**
 ```$ ffmpeg -y \
  -i sample.mov \
