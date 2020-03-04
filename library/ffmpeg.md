@@ -65,6 +65,9 @@ options
 **display**  
 `ffmpeg -i {input} -f sdl test`  
 
+**write video from images**
+`ffmpeg -framerate 25 -i "%09d.jpg" -c:v libx264 output.mp4`
+
 **rtsptransport** explicit tcp transport for rtsp  
 `ffmpeg -rtsp_transport tcp -i {rtsp} output.mp4`  
 
