@@ -20,7 +20,7 @@
 * [sysctl](#sysctl)  
 * [doc2unix](#doc2unix)  
 * [tar](#tar)  
-
+* [sh loop](#sh)
 
 ## ping  
 
@@ -266,4 +266,13 @@ $ tar zcvf <FileName>.tar.gz <DirName>
 
 extract from gzip
 $ tar zxvf <FileName>.tar.gz
+```
+
+## sh
+
+```
+for i in `ls ./*.txt`; do
+    @echo dos2unix $i;
+    dos2unix $i;
+done
 ```
