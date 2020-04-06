@@ -509,22 +509,34 @@ BUT in RUNTIME, it can check print_app.py and import code from it.
 
 
 5. Create separate env for clean build pyinstaller
-create conda virtual env
->> conda create -n build_env python=3.5.5 --no-default-packages
+
+* create conda virtual env
+```
+$ conda create -n build_env python=3.5.5 --no-default-packages
+```
+
+* create conda env and set prefix to custom location
+```
+$ conda create -p $USER/local/env/py36 python=3.6.10 --no-default-packages
+```
 
 6. install packages
->> activate build_env
->> pip install pyinstaller==3.3.1
->> pip install msgpack
->> pip install pypiwin32
->> pip install opencv-python==3.4.1.15  
->> conda install av -c conda-forge
->> conda install -c conda-forge numpy openblas 
+```
+$ activate build_env
+$ pip install pyinstaller==3.3.1
+$ pip install msgpack
+$ pip install pypiwin32
+$ pip install opencv-python==3.4.1.15  
+$ conda install av -c conda-forge
+$ conda install -c conda-forge numpy openblas 
+```
 
 7. checking non-python static library   
 a. move opencv_ffmpeg341_64.dll to building env (it locates at installed opencv folder)
 
+8. Note. 
 
+python pip package manager can always use under conda space. i.e. pip install -> conda_env/local/site-package
 
 ## cpython  
 
