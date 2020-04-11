@@ -28,13 +28,13 @@ III. Two tails test `(h0: u == u0, h1: u != u0)`
 
 Here is an example(right tail test) for illustration.  
 
-Imagine there is college. And I want to make a statement that students in class C are tallest among the whole school.  
+Imagine there is a college. And I want to make a statement that students in class C are tallest among the whole school.  
 i.e.
 ```
 h0: Students in class C are tallest among the whole school.  
 h1: Students in class C are not the tallest among the whole school.  
 ```
-Okay, let us talk about the data we had here.  
+Okay, let us talk about the data we have here.  
 
 | data                | value | population |  
 |---------------------|-------|------------|  
