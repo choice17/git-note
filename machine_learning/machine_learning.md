@@ -4,11 +4,11 @@
 
 * [Data](#data)  
 * [supervised learning]  
-** [Basic](#basic)   
-** [Classifier](#classifier)  
+   * [Basic](#basic)   
+   * [Classifier](#classifier)  
 * [Unsuperivsed learning]  
-** [Cluster](#cluster)  
-** [Autoencoder](#autoencoder)  
+   * [Cluster](#cluster)  
+   * [Autoencoder](#autoencoder)  
 * [Tool](#tool)  
 * [Dimension Reduction](#dimension_reduction)  
 * [Feature Engineering](#feature_engineering)  
@@ -57,51 +57,53 @@
 
 ## evaluation  
 
-* [Metrics]  
+* [Metrics](./metrics.md)  
+   * [p-value](./metrics.md#p-values)  
+
 * [Validation]  
 
 ## feature_engineering  
 
 * [Feature Importance]  
-** PCA - Eigenvalue weighting  
-** Decision Tree - Root node  
-** Logistic Regression - Weighting  
+   * PCA - Eigenvalue weighting  
+   * Decision Tree - Root node  
+   * Logistic Regression - Weighting  
 
 * [Normalization]  
-** Minmax Normalization  
-** Z-normalization  
-** Noise Reduction  
+   * Minmax Normalization  
+   * Z-normalization  
+   * Noise Reduction  
 
 * [Feature Extraction]  
-** Remove Outliner  
-** 1-D time series  
-*** Mathematical statistics for time series data  
-*** Neural-Network Extractor  
-** Audio  
-*** MCFS   
-*** Neural-Network Extractor  
-*** Frequency Spectrum   
-*** Frequency Transform  
-** 2-D image  
-*** Hand crafted feature (Haar)  
-*** SIFT / SURF / ...  
-*** Edge Detector  
-*** Color filter  
+   * Remove Outliner  
+   * 1-D time series  
+      * Mathematical statistics for time series data  
+      * Neural-Network Extractor  
+   * Audio  
+      * MCFS   
+      * Neural-Network Extractor  
+      * Frequency Spectrum   
+      * Frequency Transform  
+   * 2-D image  
+      * Hand crafted feature (Haar)  
+      * SIFT / SURF / ...  
+      * Edge Detector  
+      * Color filter  
 
 * [Augmentation]  
-** Electrical Signal  
-*** Adding white noise  
-*** Rescale  
-** Audio  
-*** Adding white noise  
-*** Rescale  
-*** Magitude flipping  
-** Image  
-*** Rescale  
-*** Cropping  
-*** Adding white noise  
-*** Changing Constrast/ Shapness/ WhiteBalance  
-*** Rotation  
+   * Electrical Signal  
+      * Adding white noise  
+      * Rescale  
+   * Audio  
+      * Adding white noise  
+      * Rescale  
+      * Magitude flipping  
+   * Image  
+      * Rescale  
+      * Cropping  
+      * Adding white noise  
+      * Changing Constrast/ Shapness/ WhiteBalance  
+      * Rotation  
  
 ## optimizer  
 
@@ -110,7 +112,7 @@
 
 
 TODO
-1. https://scikit-learn.org/stable/auto_examples/svm/plot_iris.html#sphx-glr-auto-examples-svm-plot-iris-py
-[ ] [Add svm kernel function poly funct]
-[ ] [Add svm mesh plot]
-[ ] [Add svr support vector regression]
+1. https://scikit-learn.org/stable/auto_examples/svm/plot_iris.html#sphx-glr-auto-examples-svm-plot-iris-py  
+[ ] [Add svm kernel function poly funct]  
+[ ] [Add svm mesh plot]  
+[ ] [Add svr support vector regression]  
