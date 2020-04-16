@@ -51,6 +51,20 @@ with tf.gfile.FastGfile('frozen_%s.pb' % name, 'w') as f:
     f.write(g.SerializeToString())
 ```
 
+* optimize graph to remove training operation  
+```
+See https://github.com/tensorflow/tensorflow/blob/master/tensorflow/python/tools/optimize_for_inference.py
+
+from tensorflow.python.tools import optimize_for_inference_lib
+
+outputGraph = optimize_for_inference_lib.optimize_for_inference(
+              inputGraph,
+              ["inputTensor"], # an array of the input node(s)
+              ["output/softmax"], # an array of output nodes
+              tf.int32.as_datatype_enum)
+```
+
+
 
 
 
