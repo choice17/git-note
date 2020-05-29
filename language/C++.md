@@ -8,6 +8,7 @@
 * **[win socket](#window_socket)**  
 * **[simd](#simd)**  
 * **[cpp on c](#cpp_on_c)**  
+* **[shared library linker](https://amir.rachum.com/blog/2016/09/17/shared-libraries/)**
 
 ## make_file
 
