@@ -45,6 +45,9 @@ options
 **extract subtitle**  
 `ffmpeg -i {input} -f srt/ass {-/output.ass/.srt}` 
 
+**extract frame number**  
+`ffprobe -v error -count_frames -select_streams v:0 -show_entries stream=nb_read_frames -of default=nokey=1:noprint_wrappers=1 <file>`  
+
 **extract video**  
 `ffmpeg -i {input} -map 0:v output.mp4` 
 
