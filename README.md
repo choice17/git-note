@@ -75,6 +75,9 @@
 ## linux 
 - **[pkg-config](./linux/pkg-config.md)**  
 
+## windows  
+- **[batch](./windows/batch-md)**  
+
 ## script  
 myscript-python
 - [[wget]](./script/wget.py)
