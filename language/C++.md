@@ -88,7 +88,12 @@ The example demos c project using cpp opencv library.
 
 * [openv cpp on c](./c/cpp_on_c) 
 
+## share library 
 
+If we want to add dynamic link to a binary,
+
+1. export LD_LIBRARY_PATH=<path>:$LD_LIBRARY_PATH
+2. Add rpath in build flag -Wl,-rpath=/home/username/foo
 
 
 
