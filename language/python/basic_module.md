@@ -18,6 +18,7 @@
 * **[configparser](#configparser)**  
 * **[pyinstaller](#pyinstaller)**  
 * **[cpython](#cpython)**
+* **[swig][#swig]**  
 
 ### subprocess
 able to communicate to cmd.exe  
@@ -542,6 +543,8 @@ python pip package manager can always use under conda space. i.e. pip install ->
 
 [link to cpython](./cpython/readme.md)
 
+## swig  
 
+[link to swig](./swig/readme.md)  
 
 
