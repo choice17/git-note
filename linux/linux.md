@@ -46,6 +46,12 @@ $ find . -name "*.[ch]" -exec clang-format-3.9 -i {} \;
 find with regex with sed type
 ```
 $ find . -regextype sed -regex "./[0-9]\{5\}.txt"
+
+// find local file with absolute path
+$ find . -regextype sed -regex ".*/train/[0-9]\{5\}\.txt" -exec readlink -f  {} \;
+
+// search by absolute path directly for /path/{:012d}.jpg
+$ find /<path> -type f -regextype sed -regex '\/.*[0-9]\{12\}.jpg'
 ```
 
 See regex example https://regex101.com/r/bN0fU0/4,
