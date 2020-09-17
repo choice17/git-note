@@ -43,6 +43,14 @@ find and exec clang-format
 $ find . -name "*.[ch]" -exec clang-format-3.9 -i {} \;
 ```
 
+find with regex with sed type
+```
+$ find . -regextype sed -regex "./[0-9]\{5\}.txt"
+```
+
+See regex example https://regex101.com/r/bN0fU0/4,
+same regex but added slash for exscape char.  
+
 ## sed  
 
 ```
