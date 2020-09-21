@@ -57,6 +57,11 @@ $ find /<path> -type f -regextype sed -regex '\/.*[0-9]\{12\}.jpg'
 See regex example https://regex101.com/r/bN0fU0/4,
 same regex but added slash for exscape char.  
 
+find with multiple cmd
+```
+$ find <dir> -name "*.mp4" -exec sh -c 'f=$(basename {}); python3 script.py -src <dir>/"$f" <dir>/"$f" pattern/"$f" -dst <dir>/"$f" -args xxx' \;
+```
+
 ## sed  
 
 ```
