@@ -15,6 +15,7 @@
 - **[reference](#reference)**  
 - **[gitconfig](#gitconfig)**  
 - **[gitmessage](#gitmessage)**  
+- **[patch](#patch)**  
 
 ## inital config  
 * check git current username 
@@ -480,3 +481,20 @@ this is linked from gitconfig `[commit]` tag
 #
 #
 ``` 
+
+## patch  
+
+git patch allows to save commit to a text file and transfer to another repo without remote control.  
+
+```
+// create patch  
+$ git format-patch <commit> --stdout > <filename>.patch
+
+cd <another repo>
+// apply patch
+$ git am <patch>
+```
+
+
+
+
