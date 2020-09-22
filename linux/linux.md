@@ -21,6 +21,7 @@
 * [doc2unix](#doc2unix)  
 * [tar](#tar)  
 * [sh loop](#sh)
+* [clean)(#clean)  
 
 ## ping  
 
@@ -294,4 +295,10 @@ for i in `ls ./*.txt`; do
     @echo dos2unix $i;
     dos2unix $i;
 done
+```  
+
+## clean  
+
+```
+$ clear && printf '\e[3J'
 ```
