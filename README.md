@@ -74,6 +74,7 @@
 
 ## linux 
 - **[pkg-config](./linux/pkg-config.md)**  
+- **[rpi](./linux/rpi.md)**  
 
 ## windows  
 - **[batch](./windows/batch-md)**  
