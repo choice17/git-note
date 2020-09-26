@@ -1,14 +1,22 @@
 ## rpi
 
-## keyboard_layout
+## Content  
+
+* **[keyboard_mapping](#keyboard_mapping)**  
+* **[userid_default](#userid_default)**  
+* **[network_setup](#network_setup)**  
+* **[wifi_setup](#wifi_setup)**  
+* **[install_anaconda](#install_anaconda)**  
+
+## keyboard_mapping
 https://thepihut.com/blogs/raspberry-pi-tutorials/25556740-changing-the-raspberry-pi-keyboard-layout
 
-## userid-default ssh
+## userid_default
 
 username:pi
 pwd:raspberry
 
-## network setup
+## network_setup
 
 $ sudo raspi-config
 
@@ -46,7 +54,7 @@ sudo nginx -c absolute path
 Guvcview
 
 
-## enable uart
+## enable_uart
 
 https://www.circuits.dk/setup-raspberry-pi-3-gpio-uart/
 
@@ -104,7 +112,7 @@ iface wlan0 inet static
     wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
 
 
-## network eth0 disappear
+## network_eth0_disappear
 
 https://raspberrypi.stackexchange.com/questions/43560/raspberry-pi-3-eth0-wrongfully-named-enx?answertab=active#tab-top
 
@@ -148,7 +156,7 @@ ethernet default ip:
 https://elinux.org/RPi_GPIO_Code_Samples#WiringPi
 
 
-## wifi setup
+## wifi_setup
 
 * Search available wifi
 
@@ -164,7 +172,7 @@ $ rfkill list
 // SIOCSIFFLAGS: Operation not possible due to RF-kill
 $ sudo rfkill unblock 0
 
-## install anaconda  
+## install_anaconda  
 
 ```
 # Go to home directory
@@ -172,9 +180,9 @@ cd ~
 
 # You can change what anaconda version you want at 
 # https://repo.continuum.io/archive/
-wget https://repo.continuum.io/archive/Anaconda2-4.2.0-Linux-x86_64.sh
-bash Anaconda2-4.2.0-Linux-x86_64.sh -b -p ~/anaconda
-rm Anaconda2-4.2.0-Linux-x86_64.sh
+wget https://repo.continuum.io/archive/Anaconda3-4.2.0-Linux-x86_64.sh
+bash Anaconda3-4.2.0-Linux-x86_64.sh -b -p ~/anaconda
+rm Anaconda3-4.2.0-Linux-x86_64.sh
 echo 'export PATH="~/anaconda/bin:$PATH"' >> ~/.bashrc 
 
 # Refresh basically
