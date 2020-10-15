@@ -300,3 +300,8 @@ player/
       |-src/ffplay.cc
       |-Makefile
 ```
+
+## Cross compile  
+
+* Compile ffmpeg in window (https://superuser.com/questions/1425350/how-to-compile-the-best-version-of-ffmpeg-for-windows)
+* Also in git(https://github.com/m-ab-s/media-autobuild_suite)
