@@ -305,3 +305,61 @@ player/
 
 * Compile ffmpeg in window (https://superuser.com/questions/1425350/how-to-compile-the-best-version-of-ffmpeg-for-windows)
 * Also in git(https://github.com/m-ab-s/media-autobuild_suite)
+
+<details>
+	<summary>cross compile example</summary>
+
+// workspace
+
+sudo apt-get install mingw-w64
+https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/host/x86_64-w64-mingw32-4.8
+```
+$workspace/
+$workspace/ffmpeg_build/build
+$workspace/ffmpeg_build/source/FFmpeg
+$workspace/ffmpeg_build/source/install_nasm.sh
+$workspace/ffmpeg_build/source/install_sdl.sh
+$workspace/ffmpeg_build/source/install_libx265.sh
+$workspace/ffmpeg_build/source/install_other.sh
+$tools/x86_64-w64-mingw32
+```
+// sdl2 make
+
+for decoder only
+```
+// ffmpeg_sources/FFmpeg
+/* configure */
+if enabled sdl2; then
+   - SDL2_CONFIG="{cross_prefix}sdl2-config" 
+   + SDL2_CONFIG="sdl2-config" 
+
+PATH=$PATH:$SDL_BUILD_PATH/bin ./configure \
+--arch=x86 \
+--target-os=mingw32 \
+--cross-prefix=$tools/x86_64-w64-mingw32-4.8/bin/x86_64-w64-mingw32- \
+--enable-shared \
+--prefix=$workspace/ffmpeg_build/build/FFmpeg/install \
+--enable-sdl2
+```
+```
+// ffmpeg_sources/install_nasm.sh
+wget https://www.nasm.us/pub/nasm/releasebuilds/2.13.03/nasm-2.13.03.tar.bz2 && \
+    tar xjvf nasm-2.13.03.tar.bz2 && \
+    cd nasm-2.13.03 && \
+    ./autogen.sh && \
+    PATH="$HOME/bin:$PATH" ./configure --prefix="$workspace/ffmpeg_build/build" --bindir="$HOME/bin" && \
+    make && \
+    make install
+```
+```
+// ffmpeg_sources/install_sdl.sh
+wget https://www.libsdl.org/release/SDL2-2.0.10.tar.gz && \
+tar xvzf SDL2-2.0.10.tar.gz && \
+cd SDL2-2.0.10 && \
+PATH=$PATH:$tools/x86_64-w64-mingw32/bin ./configure --prefix=$workspace/ffmpeg_build/build/sdl2-2.0.0.10 \
+--host=x86_64-w64-mingw32 \
+&& \
+make -j16 -s && \
+make install
+```
+</details>
