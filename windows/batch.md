@@ -41,7 +41,8 @@ for /L %a in (1,5,100) do (
 endlocal && set count=%count%
 ```
 
-```batch  
+```batch
+REM run for loop in bat script
 :: for loop in function and return val
 
 call :FORR 20,ret
