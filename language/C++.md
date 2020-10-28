@@ -95,7 +95,11 @@ If we want to add dynamic link to a binary,
 1. export LD_LIBRARY_PATH=<path>:$LD_LIBRARY_PATH
 2. Add rpath in build flag -Wl,-rpath=/home/username/foo
 
+## perf  
 
+Allow module to store frame point in compiler flag  
+
+`-fno-omit-frame-pointer`
 
 
 
