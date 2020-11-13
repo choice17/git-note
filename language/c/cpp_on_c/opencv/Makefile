@@ -5,7 +5,7 @@ INC=./inc
 SRCS=$(wildcard ./src/*.cc)
 OBJS=$(patsubst %.cc, %.o, $(SRCS))
 
-CFLAGS=-g -O2 -Wall -I$(INC)
+CFLAGS=-g -O2 -Wall -I$(INC) -std=c++11 -lstdc++
 
 BIN=libopencv.a
 
