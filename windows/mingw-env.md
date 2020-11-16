@@ -10,6 +10,9 @@ Other than C, all c++ code is not compatible between cl and mingw-g++.
 
 3. [linux](https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/host/x86_64-w64-mingw32-4.8)
 
+4. [linux prebuilt 1.0](http://winlibs.com/)
+
+5. [linux prebuilt 2.0](https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win64/Automated%20Builds/)
 ## Common projects
 
 1. opencv
