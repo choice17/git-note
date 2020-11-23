@@ -13,6 +13,7 @@
 * [Dimension Reduction](#dimension_reduction)  
 * [Feature Engineering](#feature_engineering)  
 * [Evaluation](#evaluation)  
+* [utils](#utils)  
 
 ## data  
 
@@ -110,6 +111,10 @@
 * [gradient descent]  
 * [genetic algorithm]  
 
+## utils  
+
+* [netron-network graph viewer](pip install netron)  
+* [thop-network flops calc](pip install thop)  
 
 TODO
 1. https://scikit-learn.org/stable/auto_examples/svm/plot_iris.html#sphx-glr-auto-examples-svm-plot-iris-py  
