@@ -16,6 +16,7 @@
 - **[gitconfig](#gitconfig)**  
 - **[gitmessage](#gitmessage)**  
 - **[patch](#patch)**  
+- **[merge-repo](#merge-repo)**  
 
 ## inital config  
 * check git current username 
@@ -494,6 +495,12 @@ cd <another repo>
 // apply patch
 $ git am <patch>
 ```
+
+## merge-repo  
+
+reference link
+https://www.vvse.com/blog/blog/2017/04/16/merge-git-repositories-into-a-new-repository-while-preserving-the-commit-history/
+
 
 
 
