@@ -7,6 +7,9 @@
 * **[network_setup](#network_setup)**  
 * **[wifi_setup](#wifi_setup)**  
 * **[install_anaconda](#install_anaconda)**  
+* **[share drive-samba](#samba)**  
+* **[faq](#faq)**  
+* **[raspbian-mirror](#mirror)**  
 
 ## keyboard_mapping
 https://thepihut.com/blogs/raspberry-pi-tutorials/25556740-changing-the-raspberry-pi-keyboard-layout
@@ -191,4 +194,55 @@ source .bashrc
 conda update conda
 ```
 
+## samba  
 
+https://www.footmark.info/embedded-systems/raspberry-pi/raspberry-pi3-samba-raspbian/
+
+```bash
+$ sudo apt-get install samba
+$ sudo cp /etc/samba/smb.conf /etc/samba/smb.conf.bak // backup orign file
+$ sudo systemctl start smb nmb
+$ sudo systemctl enable smb nmb // enable samba service start when system up  
+$ sudo vi /etc/samba/smb.conf
+[resource-name]
+    comment = Apache Directories
+    path = /var/www/html
+    writable = Yes
+    browseable = Yes
+    write list = apache
+    directory mode = 0775
+    create mode = 0664
+    valid users = choi1
+$ sudo testparm // test for param
+$ sudo adduser choi // add user 
+$ sudo smbpasswd -a choi // edit pwd
+<enter pwd>
+$ sudo pdbedit -L // check for valid user in samba
+$ sudo pdbedit -x -u choi // remove user  
+$ sudo systemctl restart smb nmb // start service  
+// window side  
+$ folder -> this pc -> Add a network location -> \\192.168.1.xxx\resource-name
+```
+   
+
+## faq  
+
+1. error occurred during the signature verification   
+```bash
+$ sudo apt-get clean 
+$ cd /var/lib/apt 
+$ sudo mv lists lists.old 
+$ sudo mkdir -p lists/partial 
+$ sudo apt-get clean 
+$ sudo apt-get update
+```
+2. The following signatures couldn't be verified because the public key is not available at apt-get update
+```bash
+$ sudo apt-key adv --keyserver keys.gnupg.net --recv-keys <PUBKEY> 
+or
+$ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys <PUBKEY>
+```
+
+## mirror  
+
+refer http://www.raspbian.org/RaspbianMirrors
