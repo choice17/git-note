@@ -20,6 +20,8 @@
 * **[cpython](#cpython)**
 * **[swig](#swig)**  
 * **[ctypes](#ctypes)**  
+* **[numpy](#numpy)**  
+
 
 ### subprocess
 able to communicate to cmd.exe  
@@ -553,5 +555,64 @@ python pip package manager can always use under conda space. i.e. pip install ->
 
 1. example1 for [simple type entry](./ctype/example1)  
 2. example2 for [void ptr entry with c-threading control](./ctype/example2)
+
+## numpy  
+
+numpy is a math library, but also a great tool to manipulate buffer.
+moreover, it is xchangeable to cvMat in python language.
+
+tensorflow and pytorch also use numpy matrix interface as tensor object.
+
+* direct buffer access
+
+```
+# buffer access
+/* foo.c */
+int main()
+{
+   ...; fwrite(data, "dump.bin", imw*imgh*imc*sizeof(uint8_t)); return 0;
+}
+/* read.py */
+from PIL import Image
+import numpy as np
+bin = open("dump.bin","rb").read()
+img = np.frombuffer(bin, dtype=np.uint8).reshape(imh,imw,imc)
+Image.fromarray(img).show()
+```
+
+* structured buffer access  
+
+```
+/* boo.c */
+typedef struct rect {
+	int sx; int sy; int ex; int ey; int id;
+} rect;
+typedef struct rect_list {
+	int num;
+	rect obj[10]
+} rect_list;
+int main()
+{
+    rect_list rl;
+     ...; fwrite((void*)&rl, "dump.bin", sizeof(rect_list)); return;
+}
+
+/* boo.py */
+import numpy as np
+RECT = np.dtype([('sx','i4'),('sy','i4'),('ex','i4'),('ey','i4'),('id','i4')])
+RECT_LIST = np.dtype([('num','i4'),('obj',RECT*10)])
+
+bin = open("dump.bin", "rb").read()
+rect_list = np.frombuffer(bin, dtype=RECT_LIST)
+
+print(rect_list)
+```
+
+for bitfield structure access, one must use c_type structure
+
+
+
+
+
 
 
