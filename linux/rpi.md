@@ -205,15 +205,8 @@ $ sudo cp /etc/samba/smb.conf /etc/samba/smb.conf.bak // backup orign file
 $ sudo systemctl start smb nmb
 $ sudo systemctl enable smb nmb // enable samba service start when system up  
 $ sudo vi /etc/samba/smb.conf
-[resource-name]
-    comment = Apache Directories
-    path = /var/www/html
-    writable = Yes
-    browseable = Yes
-    write list = apache
-    directory mode = 0775
-    create mode = 0664
-    valid users = choi1
+[homes]
+  read only = no
 $ sudo testparm // test for param
 $ sudo adduser choi // add user 
 $ sudo smbpasswd -a choi // edit pwd
@@ -224,7 +217,7 @@ $ sudo systemctl restart smb nmb // start service
 $ or sudo systemctl restart smbd.service
 $ or sudo systemctl restart nmbd.service
 // window side  
-$ folder -> this pc -> Add a network location -> \\192.168.1.xxx\resource-name
+$ folder -> this pc -> Add a network location -> \\192.168.1.xxx\username -> user + pwd
 ```
    
 ## admin  
