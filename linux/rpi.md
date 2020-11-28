@@ -196,7 +196,8 @@ conda update conda
 
 ## samba  
 
-https://www.footmark.info/embedded-systems/raspberry-pi/raspberry-pi3-samba-raspbian/
+1. https://www.footmark.info/embedded-systems/raspberry-pi/raspberry-pi3-samba-raspbian/
+2. http://linux.vbird.org/linux_server/0370samba.php
 
 ```bash
 $ sudo apt-get install samba
@@ -220,10 +221,26 @@ $ sudo smbpasswd -a choi // edit pwd
 $ sudo pdbedit -L // check for valid user in samba
 $ sudo pdbedit -x -u choi // remove user  
 $ sudo systemctl restart smb nmb // start service  
+$ or sudo systemctl restart smbd.service
+$ or sudo systemctl restart nmbd.service
 // window side  
 $ folder -> this pc -> Add a network location -> \\192.168.1.xxx\resource-name
 ```
    
+## admin  
+
+http://linux.vbird.org/linux_basic/0410accountmanager.php
+
+```
+# add user with optional sudo authority
+$ adduser {UserNameHere} <sudo>
+or $ usermod -aG sudo {UserNameHere}
+
+# change pwd
+$ passwd {username}
+```
+
+
 
 ## faq  
 
