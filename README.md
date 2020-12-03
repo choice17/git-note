@@ -77,7 +77,10 @@
 - **[rpi](./linux/rpi.md)**  
 
 ## windows  
-- **[batch](./windows/batch-md)**  
+- **[batch](./windows/batch.md)**  
+- **[utils](./windows/window_cmd_utils.md)**  
+- **[mingw](./windows/mingw-env.md.md)**  
+
 
 ## script  
 myscript-python
