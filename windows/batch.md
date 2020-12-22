@@ -7,6 +7,7 @@
 * [for loop](#loop)  
 * [function](#function)  
 * [reference](http://www.trytoprogram.com/batch-file-variables/)  
+* [loop for wildcard](#wildcard)  
 
 ### variables  
 
@@ -86,4 +87,10 @@ EXIT /B 0
 :INFO
 echo [INFO] %*
 EXIT /B 0
+```
+
+### wildcard  
+
+```batch
+for /r %%v in (*.264) do ffmpeg -i %%~nxv -c copy %%~nv.mp4
 ```
