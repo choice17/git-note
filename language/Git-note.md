@@ -18,6 +18,16 @@
 - **[patch](#patch)**  
 - **[merge-repo](#merge-repo)**  
 
+## repo 
+- **[repo intro](#repo-intro)**  
+- **[forall -pvc](#forall)**  
+- **[repo sync](#forall)**  
+- **[repo init](#init)**  
+- **[repo manifest](#manifest)**  
+- **[repo status](#status)**  
+- **[repo branch](#branch)**  
+
+
 ## inital config  
 * check git current username 
 ```bash
@@ -501,7 +511,75 @@ $ git am <patch>
 reference link
 https://www.vvse.com/blog/blog/2017/04/16/merge-git-repositories-into-a-new-repository-while-preserving-the-commit-history/
 
+## repo  
 
 
+## repo-intro  
+
+repo tool is to manage multiple git projects together w.r.t. to project directories and git commit status.
+The status file is stored in manifest.xml.  which also includes remote url, etc.
+
+## forall   
+
+common usage is as below, without proj-repo1, its default run on all repo projects
+
+```
+$ repo forall <proj-repo1> <proj-repo2> -pvc <cmd args 1 , 2 ... >
+```
+
+## sync  
+
+repo sync with 4 jobs
+
+```
+$ repo sync j4 
+```
+
+repo sync and detach 
+
+```
+$ repo sync -d
+```
+
+## init  
+
+init repo status
+
+```
+$ repo init -b <branch> -m <manifest path>  
+```
+
+## diff-repo  
+
+compare difference on the repo
+
+```
+$ repo --no-pager forall -pc 'git cherry origin/release1.0 origin/feature-1' > feature-1_to_release1.0.20201015.cherry
+$ cherry_diff feature-1_to_release1.0.20201015.cherry feature-1_to_release1.0.20201029.cherry > incremental.cherry
+$ cherry_annotate incremental.cherry
+```
+
+## manifest  
+
+generate manifest of current status 
+
+```
+repo manifest -r -o <snapshot file name>.xml
+```
+
+## status
+
+Show all the repo git status 
+
+```
+$ repo status
+```
+## branch  
+
+to show all branches state on the manifest
+
+```
+$ repo branch
+```
 
 
