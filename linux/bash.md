@@ -62,6 +62,18 @@ do
 done
 ```
 
+## for_loop_string-2  
+
+wildcard on filename and directory and do {}  
+
+```bash
+for i in `ls *.so*`;
+do
+    f=$(basename "${i%.so.*}")
+    ln "$i" "%f".so.2
+done
+```  
+
 ## string_compare  
 
 ```bash
