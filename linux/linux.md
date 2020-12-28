@@ -21,7 +21,11 @@
 * [doc2unix](#doc2unix)  
 * [tar](#tar)  
 * [sh loop](#sh)
-* [clean)(#clean)  
+* [clean-console](#clean)  
+* [objdump](#objdump)  
+* [readelf](#readelf)  
+* [nm](#nm)  
+
 
 ## ping  
 
@@ -301,4 +305,31 @@ done
 
 ```
 $ clear && printf '\e[3J'
+```
+
+## objdump  
+
+similar to readelf  
+
+## readelf  
+
+read elf related header  
+
+```
+readelf -d library.so
+```
+
+```
+-a (all)
+-h file header
+-e all headers (similar to -h -l -s)
+-d show dynamic sections
+```
+
+## nm  
+
+list all symbol in the objects  
+
+```
+nm <object>
 ```
