@@ -244,6 +244,87 @@ for pid, packets in cap.demux():
 	   sub = frame.decode('ass').split()
 ```
 
+**pyinstaller**  
+```python
+# pyav_app.py
+import os
+# to link ffmpeg dll in executable
+os.environ['PATH'] += os.pathsep + os.getcwd() + os.pathsep + os.path.dirname(os.getcwd())
+
+def main():
+    app = App()
+    app.run()
+
+if __name__ == '__main__':
+    main()
+
+
+
+# pyav_app.sepc
+
+import sys
+sys.setrecursionlimit(10000)
+
+import re
+import glob
+import os
+from PyInstaller.utils.hooks import collect_submodules, collect_data_files
+
+av_hidden_imports = collect_submodules("av")
+av_remove_key = ['avcodec-58.dll', 'avfilter-7.dll', 'avutil-56.dll', 'avformat-58.dll',
+                 'swscale-5.dll', 'swresample-3.dll', 'avdevice-58.dll', 'postproc-55.dll']
+
+a = Analysis(['Multiplayer.py'],
+             pathex=[os.getcwd()],
+             binaries=[],
+             datas=[('opencv_ffmpeg341_64.dll','.')],
+             hiddenimports=['fractions','numpy'] + av_hidden_imports,
+             hookspath=[],
+             runtime_hooks=[],
+             excludes=['PyQt4', 'PyQt5'],
+             win_no_prefer_redirects=False,
+             win_private_assemblies=False,
+             cipher=block_cipher)
+
+pyz = PYZ(a.pure, a.zipped_data,
+             cipher=block_cipher)
+
+Key = ['mkl'] + av_remove_key #,'libopenblas']
+
+def remove_from_list(input, keys):
+        outlist = []
+        for item in input:
+            name, _, _ = item
+            flag = 0
+            
+            for key_word in keys:
+                if name.find(key_word) > -1:
+                    if name.find('dll') > -1:
+                        flag = 1
+            if flag == 1:
+                print(name,'skip!!!!!!!!!!!!!!!!!!!!!!!')
+            else:
+                print(name,'append!!!!!!!!!!!!!!!!!!!!!!!')
+                outlist.append(item)
+            
+        return outlist
+    a.binaries = remove_from_list(a.binaries, Key)
+
+exe = EXE(pyz,
+	  a.scripts,
+	  a.binaries,
+	  a.zipfiles,
+	  a.datas,
+	  exclude_binaries=False,#True,
+	  name='Multiplayer',
+	  debug=False,
+	  strip=False,
+	  upx=True,
+	  console=True,
+	  icon='LOGO_Augentix_icon.ico')
+```
+
+				  
 ## sdl  
 [reference](http://lazyfoo.net/tutorials/SDL/index.php)   
 pysdl2  
