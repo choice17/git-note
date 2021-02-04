@@ -11,7 +11,7 @@
 * **[selfdefinedmarker](#selfdefinemarker)**  
 * **[polyfill](#polyfill)**  
 * **[facedetection](#facedetection)**  
-
+* **[cross-compile-ffmpeg](#compile)**  
 
 ## installation 
 
@@ -211,3 +211,75 @@ result_boxes = detector.detect(img)
 
 ```
 
+## compile  
+
+https://www.freedesktop.org/wiki/Software/pkg-config/CrossCompileProposal/
+
+After cross-compile ffmpeg, we have to export pkg-config-path and ld-library-path  
+note. CMAKE prerequisite. cmake, pkg-config
+
+example configure for cross-compile ffmpeg, it should enable avresample  
+
+./configure --prefix=$HOME/env/arm/ffmpeg --shlibdir=$HOME/env/arm/ffmpeg/share --disable-ffplay --arch=armv7a --cross-prefix=${CROSS_COMPILE} --target-os=linux --extra-cflags="-mfloat-abi=softfp" --extra-cxxflags="-mfloat-abi=softfp" --enable-avresample
+
+```
+export LD_LIBRARY_PATH=$HOME/env/arm/ffmpeg/lib:$LD_LIBRARY_PATH
+export C_INCLUDE_PATH=$HOME/env/arm/ffmpeg/include:$C_INCLUDE_PATH
+export CPLUS_INCLUDE_PATH=$HOME/env/arm/ffmpeg/include:$CPLUS_INCLUDE_PATH
+export PKG_CONFIG_PATH=$HOME/env/arm/ffmpeg/lib/pkgconfig:$PKG_CONFIG_PATH
+# for /usr/bin/pkgconfig
+export SYSROOT=/usr/bin/
+export PKG_CONFIG_SYSROOT_DIR=${SYSROOT}
+export PKG_CONFIG_LIBDIR=${SYSROOT}
+```
+
+setup toolchain file or toolchain config in cmake-gui
+
+```
+/* toolchain.make */
+set( CMAKE_SYSTEM_NAME Linux)
+set( CMAKE_SYSTEM_PROCESSOR arm )
+set( CMAKE_C_COMPILER ${CROSS_PREFIX}gcc )
+set( CMAKE_CXX_COMPILER ${CROSS_PREFIX}g++ )
+set( CMAKE_INSTALL_PREFIX ${INSTALL_PREFIX} )
+```
+
+```
+cmake .. \
+-DCMAKE_BUILD_TYPE=Release \
+-DCMAKE_C_FLAGS=-mfloat-abi=softfp \
+-DCMAKE_CXX_FLAGS=-mfloat-abi=softfp \
+-DBUILD_DOCS=0 \
+-DBUILD_EXAMPLES=0 \
+-DBUILD_JASPER=1 \
+-DBUILD_JAVA=0 \
+-DBUILD_JPEG=1 \
+-DBUILD_PNG=1 \
+-DBUILD_PROTOBUF=1 \
+-DBUILD_SHARED_LIBS=1 \
+-DBUILD_TESTS=0 \
+-DBUILD_ZLIB=1 \
+-DBUILD_opencv_java_buildings_generator=0 \
+-DBUILD_opencv_js=0 \
+-DBUILD_opencv_python_bindings_generator=0 \
+-DBUILD_opencv_ts=0 \
+-DBUILD_opencv_world=1 \
+-DBUILD_TESTS=0 \
+-DCMAKE_AR=${CROSS_COMPILE}ar \
+-DCMAKE_C_COMPILER=${CROSS_COMPILE}gcc \
+-DCMAKE_CXX_COMPILER=${CROSS_COMPILE}g++ \
+-DCMAKE_FIND_ROOT_PATH=${CROSS_COMPILE_SYSROOT} \
+-DCMAKE_LINKER=${CROSS_COMPILE}ld \
+-DCMAKE_NM=${CROSS_COMPILE}nm \
+-DCMAKE_OBJCOPY=${CROSS_COMPILE}objcopy \
+-DCMAKE_OBJDUMP=${CROSS_COMPILE}objdump \
+-DCMAKE_RANLIB=${CROSS_COMPILE}ranlib \
+-DCMAKE_STRIP=${CROSS_COMPILE}strip \
+-DCMAKE_SYSTEM_NAME=Linux \
+-DCMAKE_STRIP=${CROSS_COMPILE}strip \
+-DCMAKE_INSTALL_PREFIX=$HOME/opencv/install \
+-DWITH_PNG=0 \
+-DWITH_PROTOBUF=0 \
+-DWITH_PTHREADS_PF=0 \
+-DWITH_FFMPEG=1
+```
