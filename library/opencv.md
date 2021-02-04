@@ -220,7 +220,9 @@ note. CMAKE prerequisite. cmake, pkg-config
 
 example configure for cross-compile ffmpeg, it should enable avresample  
 
+```
 ./configure --prefix=$HOME/env/arm/ffmpeg --shlibdir=$HOME/env/arm/ffmpeg/share --disable-ffplay --arch=armv7a --cross-prefix=${CROSS_COMPILE} --target-os=linux --extra-cflags="-mfloat-abi=softfp" --extra-cxxflags="-mfloat-abi=softfp" --enable-avresample
+```
 
 ```
 export LD_LIBRARY_PATH=$HOME/env/arm/ffmpeg/lib:$LD_LIBRARY_PATH
@@ -242,7 +244,15 @@ set( CMAKE_SYSTEM_PROCESSOR arm )
 set( CMAKE_C_COMPILER ${CROSS_PREFIX}gcc )
 set( CMAKE_CXX_COMPILER ${CROSS_PREFIX}g++ )
 set( CMAKE_INSTALL_PREFIX ${INSTALL_PREFIX} )
+
+
+http://www.theeureka.net/blog/tag/cross-compile-opencv/
+
+opencv        $ cd build
+opencv/build/ $ cmake .. -DCMAKE_TOOLCHAIN_FILE=../toolchain.make
 ```
+
+or config toolchain in cmake
 
 ```
 cmake .. \
