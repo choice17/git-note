@@ -269,12 +269,12 @@ cmake .. \
 -DBUILD_SHARED_LIBS=1 \
 -DBUILD_TESTS=0 \
 -DBUILD_ZLIB=1 \
+-DBUILD_opencv_apps=0 \
 -DBUILD_opencv_java_buildings_generator=0 \
 -DBUILD_opencv_js=0 \
 -DBUILD_opencv_python_bindings_generator=0 \
 -DBUILD_opencv_ts=0 \
 -DBUILD_opencv_world=1 \
--DBUILD_TESTS=0 \
 -DCMAKE_AR=${CROSS_COMPILE}ar \
 -DCMAKE_C_COMPILER=${CROSS_COMPILE}gcc \
 -DCMAKE_CXX_COMPILER=${CROSS_COMPILE}g++ \
@@ -292,4 +292,19 @@ cmake .. \
 -DWITH_PROTOBUF=0 \
 -DWITH_PTHREADS_PF=0 \
 -DWITH_FFMPEG=1
+```
+
+Force ffmpeg enable to bypass cmake wrongly linkage
+
+```
+// CMakeLists
++ link_directories( "$LIB_ENV/ffmpeg/lib" )
+
++ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -lavformat -lavdevice -lavcodec -lavfilter -lswscale -lswresample")
++ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -lavformat -lavdevice -lavcodec -lavfilter -lswscale -lswresample" )
++ set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS}  -lavformat -lavdevice -lavcodec -lavfilter -lswscale -lswresample" )
+
+// cmake/OpenCVFindLibsVideo.cmake
++ message(STATUS "WARNING: Can't build ffmpeg test code set true anyway")
++ set(HAVE_FFMPEG TRUE)
 ```
