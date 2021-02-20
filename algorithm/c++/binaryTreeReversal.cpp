@@ -1,24 +1,23 @@
 /** demonstrate binary tree reversal algorithm **/
 
 #include <iostream>
+#include <vector>
 #include <stdlib.h>
 #include <time.h>
 //#include "binaryTreeReversal.h"
 
 using namespace std;
 
+struct TreeNode{
+	int item;
+	struct TreeNode *left;
+	struct TreeNode *right;
+};
+
 class NodeAlg{
 
-public:
-	
-	
+public:	
 
-	struct TreeNode{
-		int item;
-		struct TreeNode *left;
-		struct TreeNode *right;
-	};
-	
 	void createRandBST(TreeNode *root, int level) {
 		
 		root->item = rand() % 10;
@@ -52,6 +51,28 @@ public:
 		binaryTreeReversal(root->right);	
 	}
 
+	void binaryTreeReversalBFS(TreeNode *root){
+
+		if (!root) return;
+
+		vector<TreeNode*> queue;
+		TreeNode* node = nullptr;
+		TreeNode* tmp = nullptr;
+		queue.push_back(root);
+
+		while (queue.size()) {
+			node = queue.front();
+			queue.erase(queue.begin());
+			if (node->left && node->right) {
+				tmp = node->right;
+				node->right = node->left;
+				node->left = tmp;
+			}
+			if (node->left) queue.push_back(node->left);
+			if (node->right) queue.push_back(node->right);
+		}
+	}
+
 	void treePrint(TreeNode *root){
 		static int level = 0;
 		cout<<root->item<<" ";
@@ -67,19 +88,65 @@ public:
 			cout<<"E ";
 			return;
 		}
-
 	}
 
+	void tranverseDfs(TreeNode *root)
+	{
+		if (!root) return;
+
+		vector<TreeNode*> stack;
+		stack.push_back(root);
+		while (stack.size()) {
+			TreeNode *node = stack.back();
+			stack.pop_back();
+			if (node->left) {
+				stack.push_back(node->left);
+				printf("L%d,",node->left->item);
+			}
+			if (node->right) {
+				stack.push_back(node->right);
+				printf("R%d,",node->right->item);
+			}
+		}
+		cout <<"\n";
+	}
+
+	void tranverseBfs(TreeNode *root)
+	{
+		if (!root) return;
+
+		vector<TreeNode*> queue;
+		queue.push_back(root);
+		while (queue.size()) {
+			TreeNode *node = queue.front();
+			queue.erase(queue.begin());
+			if (node->left) {
+				queue.push_back(node->left);
+				printf("L%d,",node->left->item);
+			}
+			if (node->right) {
+				queue.push_back(node->right);
+				printf("R%d,",node->right->item);
+			}
+		}
+		cout <<"\n";
+	}
 
 };
 
 int main()
 {
-	NodeAlg::TreeNode *testRoot = new NodeAlg::TreeNode;
+	TreeNode *testRoot = new TreeNode;
 	NodeAlg nodeAlg;
 	srand(time(NULL));
 	nodeAlg.createRandBST(testRoot, 2);
+	cout << "\nBFS binarytree\n";
+	nodeAlg.tranverseBfs(testRoot);
+	cout << "DFS binarytree\n";
+	nodeAlg.tranverseDfs(testRoot);
 	cout<<endl;
-	nodeAlg.binaryTreeReversal(testRoot);
-	nodeAlg.treePrint(testRoot);
+	cout << "\nBFS binaryReversetree\n";
+	nodeAlg.binaryTreeReversalBFS(testRoot);
+	cout << "\nBFS binarytree\n";
+	nodeAlg.tranverseBfs(testRoot);
 }
