@@ -1,5 +1,11 @@
 ## CXX_Class  
 
+## Content  
+
+* [class](#Class)  
+* [polymorphism](#Polymorphism)  
+* [datastruct](#Data_Structure)  
+
 ## Class  
 
 * Syntax  
@@ -125,3 +131,45 @@ int main()
   b->bar() // Compile error as bar() is deleted as there is no override
 }
 ```  
+
+## Data_Structure  
+
+* [refernce](https://www.bigocheatsheet.com/)  
+
+* vector
+1. O1 push_back
+2. O1 pop_back
+3. O1 element access
+4. ON search
+5. When there is random erase() / insertion, it destroy O1 erase, iterator -> become list
+
+* list
+1. linked list
+2. O1 push_back / pop_back
+3. ON search
+4. ON/2 element access/ erase/ random insertion
+
+* stack
+1. like vector, but first in last out
+
+* queue
+1. like vector, but always first in first out
+
+* priority queue
+1. like queue, but using balance binary tree to do sorting and accessment
+
+* array
+1. static element allocation
+2. Cannot destroy, erase, insert
+3. O1 access
+4. ON search
+
+* set
+1. O1 search
+2. ON access
+3. ON insertion, deletion
+4. No same key-item in each set
+
+* map (hash table, dict)
+1. similar to set, have key, value pair
+2. cannot have same key
