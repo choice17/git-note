@@ -33,6 +33,8 @@
 [[py]](./algorithm/python/_quicksort.py)
 [[c]](./algorithm/c/_quicksort.c)
 [[matlab]](./algorithm/matlab/_quicksrot.py)
+- **dijkstra**  
+[[c++]](./algorithm/c++/dijkstra.cc)  
 - **blob detect**
 [[image]](./files/imagelist.md#blob)
 [[py]](./algorithm/python/_blob_detect.py)

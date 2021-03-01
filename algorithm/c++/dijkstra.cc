@@ -10,6 +10,10 @@ using Graph = vector<vector< int>>;
 using bGraph = vector<vector< bool>>;
 
 void print_graph(const Graph& g);
+void print_path(const Graph& g, const Graph& path, int ex, int ey);
+void copyGraph(const Graph& g, Graph& n);
+
+#define FMT "%3d "
 
 void init_graph(Graph &graph, int rows, int cols, int val)
 {
@@ -47,6 +51,8 @@ int getShortestPath(vector<int>& set_queue, const Graph& dist)
     return ret;
 }
 
+constexpr int BLK = -1;
+
 void dijkstra(const Graph &graph, int sx, int sy, int ex, int ey, Graph &path, Graph &dist)
 {
     int h = graph.size(), w = graph[0].size();
@@ -65,37 +71,35 @@ void dijkstra(const Graph &graph, int sx, int sy, int ex, int ey, Graph &path, G
 
     dist[sy][sx] = 0;
     path[sy][sx] = -1;
-
+    visited[sy][sx] = 1;
     static const vector<pair<int,int> > steps = {{0,1},{1,0},{0,-1},{-1,0}};
 
     while (set_queue.size()) {
         int val = getShortestPath(set_queue, dist);
         int ssx = val >> 16;
         int ssy = val & 0xffff;
-        //printf("idx: %3d, x:%3d, y:%3d, visited:%3d, qsize:%d\n", cnt++, ssx, ssy,(int)visited[ssy][ssx], set_queue.size());
-        visited[ssy][ssx] = 1;
-        if (ssx == ex && ssy == ey)
-            break;
-        //  u ← vertex in Q with min dist[u]   
-        // remove u from Q
+
         for (const auto& step : steps) {
             int sxt = ssx + step.second;
             int syt = ssy + step.first;
             if (sxt < 0 || sxt >= w || syt < 0 || syt >= h)
                 continue;
-            if (graph[syt][sxt] == 1)
+            if (graph[syt][sxt] == BLK)
                 continue;
+            int stepdist = (graph[syt][sxt] == 0) ? 1 : graph[syt][sxt];
+
             if (visited[syt][sxt])
-#if 1
+#if 0
                 continue;
 #else
-            {  // for edge value presence
-                if (dist[syt][sxt] > (dist[ssy][ssx] + 1)) {
-                    dist[syt][sxt] = dist[ssy][ssx] + 1;
-                    path[syt][sxt] = (ssx << 16) + ssy;
+            {
+                //for edge value presence
+                if (dist[syt][sxt] <= (dist[ssy][ssx] + stepdist))
+                    continue;
             }
 #endif 
-            dist[syt][sxt] = dist[ssy][ssx] + 1;
+            visited[syt][sxt] = 1;
+            dist[syt][sxt] = dist[ssy][ssx] + stepdist;
             path[syt][sxt] = (ssx << 16) + ssy;
             set_queue.push_back((sxt << 16) + syt);
         }
@@ -110,13 +114,13 @@ void print_graph(const Graph& g)
     printf("\n");
     int h = g.size(), w = g[0].size();
     for (int i = -1; i < w; i++) {
-        printf("%3d ", i);
+        printf(FMT, i);
     } printf("\n");
 
     for (int i = 0; i < h; i++) {
         for (int j = -1; j < w; j++) {
-            if (j == -1) printf("%3d ", i);
-            else printf("%3d ", g[i][j]);
+            if (j == -1) printf(FMT, i);
+            else printf(FMT, g[i][j]);
         } printf("\n");
     }
 }
@@ -157,16 +161,16 @@ void case2(int argc, char **argv)
 {
 
     Graph graph = {
-        {0, 0, 0, 1, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 1, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 1, 0, 1, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 1, 0, 0, 0, 1},
-        {0, 0, 0, 1, 0, 1, 0, 0, 1, 0},
-        {0, 0, 0, 1, 0, 1, 1, 1, 0, 0},
-        {0, 0, 0, 1, 0, 1, 0, 0, 0, 0},
-        {0, 0, 0, 1, 0, 1, 0, 0, 0, 0},
-        {0, 0, 0, 1, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 1, 0, 0, 0, 0, 0, 0}
+        {0, 0, 0, -1, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, -1, 0, 5, 2, 0, 0, 0},
+        {0, 0, 0, -1, 0, -1, 0, 0, 0, 0},
+        {0, 0, 0,  0, 0, -1, 0, 0, 0, -1},
+        {9, 1, 3, -1, 0, -1, 0, 0, -1, 0},
+        {3, 1, 9, -1, 0, -1, -1, -1, 0, 0},
+        {2, 9, 9, -1, 0, -1, 0, 0, 0, 0},
+        {0, 5, 5, -1, 0, -1, 0, 0, 0, 0},
+        {0, 0, 0, -1, 0, 5, 2, 2, 0, 0},
+        {0, 0, 0, -1, 0, 0, 0, 0, 0, 0}
     };
 
     Graph path, dist;
@@ -187,6 +191,8 @@ void case2(int argc, char **argv)
     //cout << "tranverse dfs :\n";
     //tranversedfs(graph, sx, sy, ex, ey);
     dijkstra(graph, sx, sy, ex, ey, path, dist);
+    //print_graph(path);
+    //print_graph(dist);
     print_path(graph, path, ex, ey);
 
 }
