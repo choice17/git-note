@@ -52,7 +52,8 @@
 [[c]](./algorithm/c/packbit.c)
 - **astar**
 [[py]](./algorithm/python/_astar.py)
-
+- **distance**
+[[py]](./algorithm/python/distancefunction.py)
 
 ## data_structure
 - **c/c++**  
