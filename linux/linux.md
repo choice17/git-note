@@ -18,7 +18,7 @@
 * [mount](#mount)
 * [tr](#tr)  
 * [sysctl](#sysctl)  
-* [doc2unix](#doc2unix)  
+* [dos2unix](#dos2unix)  
 * [tar](#tar)  
 * [sh loop](#sh)
 * [clean-console](#clean)  
@@ -274,7 +274,7 @@ printf "Stopping network: "
 /sbin/sysctl -w net.core.wmem_max=163840
 ```   
 
-## doc2unix  
+## dos2unix  
 
 doc2unix is a binary function to convert WINDOW EOL file to UNIX format  
 
