@@ -25,7 +25,7 @@
 * [objdump](#objdump)  
 * [readelf](#readelf)  
 * [nm](#nm)  
-
+* [module](#module)  
 
 ## ping  
 
@@ -333,3 +333,31 @@ list all symbol in the objects
 ```
 nm <object>
 ```
+
+## module  
+
+module load specific modules which define specific linux environ variables
+we can specify multiple module files for project switching
+
+```
+/* $HOME/.modulefiles/project-0 */
+family("jls")
+
+help([[
+  Module description
+]])
+
+-- Buildroot --
+setenv("BR_DIR", "/tools/buildroot/dl")
+
+-- Cross toolchain Root Dir --
+CROSS_TOOL = "/tools/arm-linux-gnueabihf"
+setenv("CROSS_TOOL", CROSS_TOOL)
+setenv("ARCH", "arm")
+setenv("CROSS_COMPILE", "arm-linux-gnueabihf-")
+prepend_path("PATH", XTOOL_PATH .. "/bin")
+
+-- Project --
+setenv("REPO_LINK", "http://github.com/choice17/repo/project0")
+```
+
