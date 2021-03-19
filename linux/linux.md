@@ -113,6 +113,15 @@ To show pc mac, tcpip addr
 $ ifconfig
 ```
 
+Redefine new ethernet hw addr
+
+```
+ifconfig eth0 down
+ifconfig eth0 hw ether AA:BB:CC:CC:00:11
+ifconfig eth0 192.168.0.10 netmask 255.255.192.0
+ifconfig eth0 up
+```
+
 ## top
 
 with watch in 2 sec loop
