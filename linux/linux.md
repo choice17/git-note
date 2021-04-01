@@ -25,6 +25,7 @@
 * [readelf](#readelf)  
 * [nm](#nm)  
 * [module](#module)  
+* [strip](#strip)  
 
 ## ping  
 
@@ -398,3 +399,12 @@ prepend_path("PATH", XTOOL_PATH .. "/bin")
 setenv("REPO_LINK", "http://github.com/choice17/repo/project0")
 ```
 
+## strip  
+
+remove all unused symbol note and debug message
+
+for share library  
+`${CROSS_COMPILE}strip --strip-debug --remove-section=.note --remove-section=.comment *.so`
+
+for binary  
+`${CROSS_COMPILE}strip <binary>`
