@@ -16,7 +16,6 @@
 * [tr](#tr)  
 * [clang](#clang)  
 * [mount](#mount)
-* [tr](#tr)  
 * [sysctl](#sysctl)  
 * [dos2unix](#dos2unix)  
 * [tar](#tar)  
@@ -69,8 +68,24 @@ $ find <dir> -name "*.mp4" -exec sh -c 'f=$(basename {}); python3 script.py -src
 
 ## sed  
 
+Replace pattern
 ```
 $ sed -i "s/<pattern_to_find>/<patter_to_replace>/g" <wildcard>
+```
+
+Append line
+```
+$ sed -i "<line no>a<string>" <file wildcard>
+```
+
+Replace line
+```
+$ sed -i "<line no>c<string>" <file wildcard>
+```
+
+Without inplace the file and output to console
+```
+$ sed "<line no>c<string>" <file wildcard> | head -20
 ```
 
 ## rename  
@@ -129,6 +144,14 @@ with watch in 2 sec loop
 ```
 $ watch -d2 top
 ```
+
+or 
+
+```
+$ top -d 2
+```
+
+PS. use key 0/1 to show cpu core loading
 
 ## cat   
 
