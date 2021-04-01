@@ -343,9 +343,14 @@ $ clear && printf '\e[3J'
 
 similar to readelf  
 
+check cross-compiler for binary file  
+```
+objdump -s --section .comment <elf>
+```
+
 ## readelf  
 
-read elf related header  
+read elf related header dynamic so 
 
 ```
 readelf -d library.so
