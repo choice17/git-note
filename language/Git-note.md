@@ -3,6 +3,7 @@
 ## content table
 - **[git initalize config](#inital-config)**  
 - **[branches management](#branches-management)**  
+- **[git log](#log)**  
 - **[merge branch](#merge-branch)**  
 - **[cherry pick](#cherry-pick)**  
 - **[tagging](#tagging)**  
@@ -108,7 +109,6 @@ Output the different commits between two branches.
   git log --left-right --graph --cherry-pick --oneline @...origin/mp-agt902-3 --pretty=format:"%h%x09%an%x09%s"
 ```
 
-
 * merge remote master branch ex. 
 ```bash
   git checkout <master>
@@ -128,6 +128,24 @@ Output the different commits between two branches.
   git checkout master
 
   git rebase -i test<desired commit>
+```
+
+## log
+
+```bash
+  git log
+  git log --oneline -n10
+```
+
+* log format
+
+```
+  git log --pretty=format:"%h%x09%an%x09%ad%x09%s"
+  %h = abbreviated commit hash
+  %x09 = tab (character for code 9)
+  %an = author name
+  %ad = author date (format respects --date= option)
+  %s = subject
 ```
 
 ## merge branch  
