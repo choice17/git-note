@@ -26,6 +26,7 @@
 * [nm](#nm)  
 * [module](#module)  
 * [strip](#strip)  
+* [wc](#wc)  
 
 ## ping  
 
@@ -408,3 +409,17 @@ for share library
 
 for binary  
 `${CROSS_COMPILE}strip <binary>`
+
+## wc  
+
+to count number of lines of a text  
+
+`wc -l <text file>`  
+
+or count number of lines for pipe output  
+
+```bash 
+  cat <file> | wc -l
+  ls *.h | wc -l
+  find . -name "*.h" | wc -i
+```
