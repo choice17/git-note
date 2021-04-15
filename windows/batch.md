@@ -8,6 +8,7 @@
 * [function](#function)  
 * [reference](http://www.trytoprogram.com/batch-file-variables/)  
 * [loop for wildcard](#wildcard)  
+* [directory loop](#director_wildcard)  
 
 ### variables  
 
@@ -93,4 +94,86 @@ EXIT /B 0
 
 ```batch
 for /r %%v in (*.264) do ffmpeg -i %%~nxv -c copy %%~nv.mp4
+```
+
+### director_wildcard
+
+```batch
+echo off
+call activate env
+
+call :RUN_CLASSIFICATION
+
+goto :eof
+
+:PROBE
+echo PROBE
+for /r %%v in ( videos\raw\*_sei.264 ) do (
+	echo ffprobe -i %%v
+	ffprobe -i %%v 2>> log.txt
+)
+
+EXIT /b
+
+:COLLECT
+echo COLLECT
+for /d %%f in (videos\*) do (
+	for /r %%v in ("%%f%"\*_sei.264) do (
+		echo cp %%f\%%~nv.264 %%~f_sei.264
+		cp %%f\%%~nv.264 %%~f_sei.264
+	)
+)
+
+EXIT /b
+
+set list=distance multi multi2 multi3 table
+for %%s in (%list%) do (
+	echo python app.py -app 0 -os 1920 1080 -ofps 12 -noidle -idx -o app-video\%%s-draw.mp4 -u app-video\%%s.mp4
+	python app.py -app 0 -os 1920 1080 -ofps 12 -noidle -idx -o app-video\%%s-draw.mp4 -u happ-video\%%s.mp4
+)
+EXIT /b
+
+:RUN_CLASSIFICATION
+echo RUN_CLASSIFICATION
+for /d %%f in (videos\*) do (
+	for /r %%v in ("%%f%"\*_sei.264) do (
+		echo python app.py -app 14 -pwait 9 -os 1920 1080 -ofps 20 -noidle -idx -o output/%%~f_draw.mp4 -u %%f\%%~nv.264
+		python app.py -app 14 -pwait 9 -os 1920 1080 -ofps 20 -noidle -idx -o output/%%~f_draw.mp4 -u %%f\%%~nv.264
+	)
+)
+EXIT /b
+
+:RUN_CLASSIFICATION_1DIR
+echo RUN_CLASSIFICATION_1DIR
+for /r %%f in (videos\raw\*.264) do (
+	echo python app.py -app 14 -pwait 9 -os 1920 1080 -ofps 20 -noidle -idx -o output\draw-%%~nf.mp4 -u %%f
+	python app.py -app 14 -pwait 9 -os 1920 1080 -ofps 20 -noidle -idx -o output\draw-%%~nf.mp4 -u %%f
+)
+EXIT /b
+
+:RUN_DRAW_1DIR
+echo RUN_CLASSIFICATION_1DIR
+for /r %%f in (videos\raw\*.mp4) do (
+	echo python app.py -app 0 -os 1920 1080 -ofps 12 -noidle -idx -o videos\draw-%%~nf.mp4 -u %%f
+	python app.py -app 0 -os 1920 1080 -ofps 12 -noidle -idx -o videos\draw-%%~nf.mp4 -u %%f
+)
+EXIT /b
+
+
+:DUMMY0
+set list=166.006.000.luma488_5_0
+set list=%list%;166.007.000.multi
+set list=%list%;166.008.000.occlusion
+set list=%list%;166.009.000.pose
+set list=%list%;166.010.000.pose2
+EXIT /b
+
+:INSERT_SEI
+for /d %%f in (videos\*) do (
+	for /r %%v in ("%%f%"\*.mp4) do (
+		echo python utils\app.py %%f\%%~nv.264 %%f\%%~nv_sei.264 %%f\%%~nv.ol.csv
+		python utils\app.py %%f\%%~nv.264 %%f\%%~nv_sei.264 %%f\%%~nv.ol.csv
+	)
+)
+EXIT /b
 ```
