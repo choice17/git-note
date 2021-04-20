@@ -27,6 +27,7 @@
 * [module](#module)  
 * [strip](#strip)  
 * [wc](#wc)  
+* [valgrind](#valgrind)  
 
 ## ping  
 
@@ -422,4 +423,12 @@ or count number of lines for pipe output
   cat <file> | wc -l
   ls *.h | wc -l
   find . -name "*.h" | wc -i
+```
+
+## valgrind   
+
+```
+export MALLOC_CHECK_=3
+valgrind --tool=memcheck --leak-check=full --show-reachable=yes --show-leak-kinds=all -v <bin>
+valgrind --tool=massif --tool=memcheck --leak-check=yes --show-reachable=yes
 ```
