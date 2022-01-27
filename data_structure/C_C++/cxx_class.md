@@ -134,7 +134,7 @@ int main()
 
 ## Data_Structure  
 
-* [refernce](https://www.bigocheatsheet.com/)  
+* [reference](https://www.bigocheatsheet.com/)  
 
 * vector
 1. O1 push_back
@@ -168,8 +168,18 @@ int main()
 1. O1 search
 2. ON access
 3. ON insertion, deletion
-4. No same key-item in each set
+4. unique keys only
 
-* map (hash table, dict)
-1. similar to set, have key, value pair
-2. cannot have same key
+* map (binary search tree)
+1. O(logn) search
+2. O(logn) insertion
+3. O(logn) deletion
+4. sorted
+5. similar to set, have key, value pair
+6. cannot have same key
+
+* unordered_map (hash table, dict)
+1. O(1) search
+2. O(1) insertion
+3. O(1) deletion
+4. unsorted
