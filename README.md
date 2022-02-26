@@ -54,6 +54,8 @@
 [[py]](./algorithm/python/_astar.py)
 - **distance**
 [[py]](./algorithm/python/distancefunction.py)
+- **matching**
+[[py]](./algorithm/python/_matching.py)
 
 ## data_structure
 - **c/c++**  
