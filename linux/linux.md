@@ -28,6 +28,7 @@
 * [strip](#strip)  
 * [wc](#wc)  
 * [valgrind](#valgrind)  
+* [tmux](#tmux)
 
 ## ping  
 
@@ -442,3 +443,33 @@ export MALLOC_CHECK_=3
 valgrind --tool=memcheck --leak-check=full --show-reachable=yes --show-leak-kinds=all -v <bin>
 valgrind --tool=massif --tool=memcheck --leak-check=yes --show-reachable=yes
 ```
+
+## tmux  
+
+tmux is a ssh console multiplexer, it helps to manage and split console to different window/ panel and push jobs to background.
+
+1. split horizontal panel
+```
+$ Ctrl-B "
+```
+
+2. split vertical panel
+```
+$ Ctrl-B %
+```
+
+3. move around panels
+```
+$ Ctrl-B <arrow>
+```
+
+4. create new window
+```
+$ Ctrl-B c
+```
+
+5. switch window
+```
+$ Ctrl-B <number>
+```
+
