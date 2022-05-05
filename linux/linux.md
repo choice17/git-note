@@ -69,6 +69,11 @@ find with multiple cmd
 $ find <dir> -name "*.mp4" -exec sh -c 'f=$(basename {}); python3 script.py -src <dir>/"$f" <dir>/"$f" pattern/"$f" -dst <dir>/"$f" -args xxx' \;
 ```
 
+find without using exec
+```
+$ find . -name "*.cmd" -print0 | xargs -0 sed -i '/^<pattern>/i<pattern to insert>'
+```
+
 ## sed  
 
 Replace pattern
@@ -89,6 +94,11 @@ $ sed -i "<line no>c<string>" <file wildcard>
 Without inplace the file and output to console
 ```
 $ sed "<line no>c<string>" <file wildcard> | head -20
+```
+
+insert a line before a searched pattern
+```
+$ sed -i "/^<pattern>/i<pattern-to-insert>" <file wildcard>
 ```
 
 ## rename  
