@@ -37,14 +37,19 @@ $> : detach
 * basic 
 
 ```
-b <file>:<line no> # break on the line number
-b <function name> # break on the function entry
-i <break point> # info of break point number
-p <variable> # print variable value
-r # restart program
-c # continue to next break point
-n # step into next line
-l # list current lines
+b <file>:<line no> ## break on the line number
+b <function name> ## break on the function entry
+i <break point> ## info of break point number
+p <variable> ## print variable value
+r ## restart program
+c ## continue to next break point
+n ## step into next line
+l ## list current lines
+info threads ## show threads information
+t <thread no> ## jump to thread id
+bt <stack number> ## show stack trace
+j <stack number> ## jump to specific stack
+p ((class/struct ptr *)<stack-address>)->(member variable) ## print specific stack member/member function by using stack address
 ```
 
 * disassemble the instruction set
