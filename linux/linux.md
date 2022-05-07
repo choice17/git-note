@@ -473,3 +473,22 @@ $ Ctrl-B c
 $ Ctrl-B <number>
 ```
 
+6. beauti-tmux config
+```
+https://github.com/gpakosz/.tmux
+```
+
+7. nested tmux
+it's important if you are working wif bsub interactive terminal (unlike ssh)
+```bash
+## somewhere in ~/.tmux.conf
++ bind-key -n c-g send-prefix
++ bind-key -n c-t send-keys c-g
+```
+
+and unset tmux
+```bash
+## ~/.bashrc or ~/.cshrc
+unset TMUX
+```
+
