@@ -68,6 +68,14 @@ p4 reopen -c <cl> -Si //...
 # reopen for specific files
 p4 reopen -c <cl> -Si <file1> <file2>
 ```
-  
+* patch
 
+reference : https://stackoverflow.com/questions/9429589/how-to-apply-a-perforce-patch
+
+```
+unsetenv P4DIFF
+p4 diff <f0> <f1> ... > patch.diff
+sed -Ee 's|==== (//.*)#[0-9]+(.*)|+++ \1\n--- \1|' < patch.diff > patch
+patch -p4 -l < patch
+```
 
