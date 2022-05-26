@@ -59,3 +59,13 @@ set  disassemble-next-line on
 show disassemble-next-line
 ```
 
+## disable optimization for function
+
+```cpp
+/* function.cpp */
+int __attribute__((optimize("O0"))) foo(int b)
+{
+  int a = b * b;
+  return a;
+}
+```
