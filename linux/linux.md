@@ -492,3 +492,19 @@ and unset tmux
 unset TMUX
 ```
 
+8. rename window
+```
+$ Ctrl-B ,
+$ <input new name> <enter>
+```
+
+9. zoom in one panel
+```
+$ Ctrl-B z
+```
+
+10. swith panel
+```
+$ Ctrl-B q-<num>
+```
+
