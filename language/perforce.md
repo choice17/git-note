@@ -80,7 +80,7 @@ patch -p4 -l < patch
 setenv P4DIFF vimdiff
 ```
 
-# edit p4 client info
+* edit p4 client info
 
 ```
 # output client info to stdout
