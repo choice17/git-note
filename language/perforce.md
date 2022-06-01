@@ -77,5 +77,19 @@ unsetenv P4DIFF
 p4 diff <f0> <f1> ... > patch.diff
 sed -Ee 's|==== (//.*)#[0-9]+(.*)|+++ \1\n--- \1|' < patch.diff > patch
 patch -p4 -l < patch
+setenv P4DIFF vimdiff
+```
+
+# edit p4 client info
+
+```
+# output client info to stdout
+p4 client -o > a.spec
+
+# edit the info
+vi a.spec
+
+# input client info to stdin
+p4 client -i < a.spec
 ```
 
