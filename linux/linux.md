@@ -102,6 +102,11 @@ insert a line before a searched pattern
 $ sed -i "/^<pattern>/i<pattern-to-insert>" <file wildcard>
 ```
 
+find and append to end of line
+```
+$ sed -i "/^<pattern>/s/$/the end of line/g" <file wildcard>
+```
+
 ## rename  
 
 usage of rename is similar to sed  
