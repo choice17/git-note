@@ -29,6 +29,7 @@
 * [wc](#wc)  
 * [valgrind](#valgrind)  
 * [tmux](#tmux)
+* [awk](#awk)
 
 ## ping  
 
@@ -106,6 +107,13 @@ find and append to end of line
 ```
 $ sed -i "/^<pattern>/s/$/the end of line/g" <file wildcard>
 ```
+
+print line 
+```
+$ sed -n '<lineno>p' <file>
+$ sed -n '<line-start>,<line-end>p' <file>
+```
+
 
 ## rename  
 
@@ -511,5 +519,19 @@ $ Ctrl-B z
 10. swith panel
 ```
 $ Ctrl-B q-<num>
+```
+
+## awk  
+
+awk mainly helps to do with formated string with delimiter, and allow secondary cmdline printing
+
+awk search with key
+```
+$ awk '/<key1>/ || /<key2>/ || /<key3>/' <file>
+```
+
+awk filter and print
+```
+$ awk -F '<delimiter>' '{print $1,$2,$3,$4}'
 ```
 
