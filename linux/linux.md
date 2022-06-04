@@ -353,12 +353,18 @@ $ tar zxvf <FileName>.tar.gz
 
 ## sh
 
+sh loop
 ```
 for i in `ls ./*.txt`; do
     @echo dos2unix $i;
     dos2unix $i;
 done
 ```  
+
+bash loop
+```
+$ bash -c 'i=0; while true; do echo $i,`date`; i=$((i+1)); sleep 1;done'
+```
 
 ## clean  
 
