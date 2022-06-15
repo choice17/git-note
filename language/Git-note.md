@@ -471,7 +471,7 @@ gitconfig allow alias for git command and default control of user
 ```python
 # ~/.gitconfig
 [filter "lfs"]
-u smudge = git-lfs smudge -- %f
+  smudge = git-lfs smudge -- %f
   process = git-lfs filter-process
   required = true
   clean = git-lfs clean -- %f
@@ -486,6 +486,7 @@ u smudge = git-lfs smudge -- %f
     default = simple
 [alias]
     st = status
+    ck = cherry-pick
     ci = commit
     co = checkout
     br = branch
