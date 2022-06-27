@@ -30,6 +30,7 @@
 * [valgrind](#valgrind)  
 * [tmux](#tmux)
 * [awk](#awk)
+* [vnc](#vnc)
 
 ## ping  
 
@@ -540,4 +541,53 @@ awk filter and print
 ```
 $ awk -F '<delimiter>' '{print $1,$2,$3,$4}'
 ```
+
+## vnc 
+
+vnc is a non-security connection to share desktop(as RDP). It can however convenient to local network user.
+normal, vnc is installed in linux system (ubuntu/redhat). user can easily establish vnc server.
+For client side, user can download Tiger vnc/ real-vnc for vncviewer.
+
+server side
+
+setup vnc passwd
+```
+$ vncpasswd 
+```
+
+list server session
+```
+$ vncserver -list
+```
+
+startup session setup
+```
+$ vncserver -depth <8/64/256> -LowColorLevel <0/1/2> -CompressionLevel <0-9> -geometry <1280x800>
+```
+
+client side
+
+accept x11 application
+```
+$ xhost +
+```
+
+terminal mode
+```
+$ vncviewer -via <host> :<display session number>
+```
+
+gui mode
+```
+$ http://<hostname>:<display session number>
+
+
+
+
+
+
+
+
+
+
 
