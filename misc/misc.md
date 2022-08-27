@@ -1,6 +1,7 @@
 # MICS  
 
 ## Content
+* **[hyper-terminal](#hyperterminal)
 * **[live555_build_for_Window](https://github.com/choice17/live555)**   
 * **[XML schema](#xmlschema)**  
 * **[jupyter Magic](#juptyermagic)**  
@@ -8,6 +9,11 @@
 * **[pip venv](#pipvenv)**  
 * **[conda venv](#condavenv)**  
 * **[mount nfs](#mountnfs)**  
+
+## hyperterminal
+
+config : https://gist.github.com/coco-napky/404220405435b3d0373e37ec43e54a23
+download : https://hyper.is/
 
 ## xmlschema
 
