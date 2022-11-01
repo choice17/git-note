@@ -77,6 +77,12 @@ find without using exec
 $ find . -name "*.cmd" -print0 | xargs -0 sed -i '/^<pattern>/i<pattern to insert>'
 ```
 
+find with maxdepth and dir
+```
+find . -maxdepth 1 -name "<wildcard>" -type d
+```
+
+
 ## sed  
 
 Replace pattern
