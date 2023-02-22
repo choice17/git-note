@@ -82,6 +82,10 @@ find with maxdepth and dir
 find . -maxdepth 1 -name "<wildcard>" -type d
 ```
 
+find and link to different suffix
+```
+find . -name "*_g" -exec sh -c 'j={}; i=`basename {}`; i="${i%_g}"; ln -sfn $j $i ' \;
+```
 
 ## sed  
 
