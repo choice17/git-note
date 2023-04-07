@@ -119,6 +119,11 @@ find and append to end of line
 $ sed -i "/^<pattern>/s/$/the end of line/g" <file wildcard>
 ```
 
+append to end of a specified line 
+```
+$ sed -i "<lineno>s/$/<word>/g" <file wildcard>
+```
+
 print line 
 ```
 $ sed -n '<lineno>p' <file>
