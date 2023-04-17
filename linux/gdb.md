@@ -10,28 +10,34 @@ https://www.gnu.org/software/gdb/download/
 
 If user want to enable gdb, one must compile object file with -g flag with -O0 without optimization.
 
-* by attach program
-
-```bash
-$> binary.elf &
-$> gdb -p binary.elf-pid
-$> : gdb - console
-```
-
 * by start up
 
 ```bash
-$> gdb --args binary.elf args1 args2 ...
-$> : gdb - console
+>$ gdb --args binary.elf args1 args2 ...
+>(gdb)$ - console
 ```
 
-* detach the debug program
+* attach program within gdb console
 
 ```bash
-$> : gdb - console
-$> : detach
+>(gdb)$ attach <pid>
 ```
- 
+
+* by attach program
+
+```bash
+>$ binary.elf &
+>$ gdb -p <binary.elf pid>
+>(gdb)$ - console
+```
+
+* detach from the debug program
+
+```bash
+>(gdb)$ - console
+>(gdb)$ detach
+```
+
 ### gdb console
 
 * basic 
@@ -50,6 +56,7 @@ t <thread no> ## jump to thread id
 bt <stack number> ## show stack trace
 j <stack number> ## jump to specific stack
 p ((class/struct ptr *)<stack-address>)->(member variable) ## print specific stack member/member function by using stack address
+shell ## jump to shell console ($ fg to return to gdb)
 ```
 
 * disassemble the instruction set
@@ -59,7 +66,9 @@ set  disassemble-next-line on
 show disassemble-next-line
 ```
 
-## disable optimization for single function
+## disable optimization
+
+* for single function  
 
 ```cpp
 /* function.cpp */
@@ -70,17 +79,25 @@ int __attribute__((optimize("O0"))) foo(int b)
 }
 ```
 
+* for a specific code segment  
+
+```cpp
+#pragma GCC optimize("O0")
+...
+#pragma GCC reset_options
+```
+
 ## avoid multithreading run
 
 * lock thread step
 
-set scheduler-locking step
-set scheduler-locking on
+set scheduler-locking step  
+set scheduler-locking on  
 
 * fork
-set follow-fork-mode
-parent
-child
+set follow-fork-mode  
+parent  
+child  
 
 ## gdbinit
 
