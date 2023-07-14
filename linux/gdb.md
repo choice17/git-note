@@ -6,6 +6,15 @@ source code
 
 https://www.gnu.org/software/gdb/download/
 
+### content
+
+* [method](#method)
+* [gdb console](#gdb-console)
+* [disable optimization](#disable-optimization)
+* [avoid multithreading run](#avoid-multithreading-run)
+* [gdbinit](#gdbinit)
+* [add_debug_symbol](#add_debug_symbol)
+
 ### method
 
 If user want to enable gdb, one must compile object file with -g flag with -O0 without optimization.
@@ -166,4 +175,31 @@ int main()
    return 0;
 
 }
+```
+
+## add_debug_symbol
+
+we can add symbol using below method inside gdb console
+```bash
+> add-symbol-file filename address
+
+# address can be retrieved using below command
+> readelf -WS path/to/file.elf | grep .text | awk '{ print "0x"$5 }'
+```
+
+below is the automated function to retrieve symbol for gdb after adding the function to ~/.gdbinit
+```bash
+define add-symbol-file-auto
+  # Parse .text address to temp file
+  shell echo set \$text_address=$(readelf -WS $arg0 | grep .text | awk '{ print "0x"$5 }') >/tmp/temp_gdb_text_address.txt
+
+  # Source .text address
+  source /tmp/temp_gdb_text_address.txt
+
+  #  Clean tempfile
+  shell rm -f /tmp/temp_gdb_text_address.txt
+
+  # Load symbol table
+  add-symbol-file $arg0 $text_address
+end
 ```
