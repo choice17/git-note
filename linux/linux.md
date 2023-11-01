@@ -557,6 +557,11 @@ awk filter and print
 $ awk -F '<delimiter>' '{print $1,$2,$3,$4}'
 ```
 
+awk for maths cal (average by column)
+```
+$ awk '{ total += $7 } END { print total/NR }' file.txt
+```
+
 ## vnc 
 
 vnc is a non-security connection to share desktop(as RDP). It can however convenient to local network user.
