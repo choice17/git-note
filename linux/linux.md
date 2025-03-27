@@ -151,6 +151,13 @@ $ grep -E "<pattern>" -rn . -A 5
 
 `A` display with next 5 lines  
 
+Search both pattern match "patternA" and "patternB" of a file and output as filename
+Get its basename and grep again to another file
+
+```
+$ grep -l dynamic -r powermeter/test/tcl | xargs grep -E "(pgv.*macro|macro*.pgv)" -l | xargs -I {} basename {} | xargs -I {} grep -l {} -rn power/tst/*.series | xargs -I {} basename {} | xargs -I {} grep {} -n power/test/t.dft | awk '{print $2}'
+```
+
 ## killall  
 
 killall can send signal to linux program by program name  
